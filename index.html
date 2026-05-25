@@ -1,1 +1,338 @@
 # Lutabet
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LutaBet</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      background:#050505;
+      color:white;
+    }
+
+    /* HEADER */
+
+    header{
+      width:100%;
+      height:90px;
+      background:#0b0b0b;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 60px;
+      border-bottom:1px solid #1b1b1b;
+    }
+
+    .logo{
+      font-size:40px;
+      font-weight:900;
+    }
+
+    .logo span{
+      color:#e53935;
+      font-style:italic;
+    }
+
+    nav{
+      display:flex;
+      gap:50px;
+    }
+
+    nav a{
+      text-decoration:none;
+      color:white;
+      font-size:18px;
+      transition:0.3s;
+    }
+
+    nav a:hover{
+      color:#e53935;
+    }
+
+    .btn-login{
+      background:#1a1a1a;
+      color:white;
+      border:none;
+      padding:15px 28px;
+      border-radius:10px;
+      font-size:16px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .btn-login:hover{
+      background:#e53935;
+    }
+
+    /* HERO */
+
+    .hero{
+      position:relative;
+      height:520px;
+      background:
+      linear-gradient(
+        rgba(0,0,0,0.6),
+        rgba(0,0,0,0.7)
+      ),
+      url('https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?q=80&w=1974&auto=format&fit=crop');
+      background-size:cover;
+      background-position:center;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+    }
+
+    .hero h1{
+      font-size:90px;
+      text-transform:uppercase;
+      line-height:0.9;
+      font-weight:900;
+      text-shadow:0 10px 20px rgba(0,0,0,0.7);
+    }
+
+    /* SECTION */
+
+    .section{
+      padding:50px 60px;
+    }
+
+    .section h2{
+      font-size:55px;
+      margin-bottom:30px;
+      font-weight:900;
+    }
+
+    .container{
+      display:grid;
+      grid-template-columns:280px 1fr;
+      gap:30px;
+    }
+
+    /* SPORTS */
+
+    .sports{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
+
+    .card{
+      background:#101010;
+      height:150px;
+      border-radius:15px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:15px;
+      transition:0.3s;
+      border:1px solid #1f1f1f;
+    }
+
+    .card:hover{
+      transform:translateY(-5px);
+      border-color:#e53935;
+    }
+
+    .card .icon{
+      font-size:45px;
+    }
+
+    .card p{
+      font-size:22px;
+      font-weight:700;
+    }
+
+    /* TABLE */
+
+    .table-box{
+      background:#101010;
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid #1f1f1f;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+    }
+
+    th{
+      padding:25px;
+      font-size:22px;
+      text-align:left;
+      background:#121212;
+    }
+
+    td{
+      padding:28px 25px;
+      border-top:1px solid #1d1d1d;
+      font-size:28px;
+      font-weight:700;
+    }
+
+    td:nth-child(2),
+    td:nth-child(3),
+    th:nth-child(2),
+    th:nth-child(3){
+      text-align:center;
+    }
+
+    tr:hover{
+      background:#181818;
+    }
+
+    @media(max-width:900px){
+
+      header{
+        padding:20px;
+      }
+
+      nav{
+        display:none;
+      }
+
+      .hero h1{
+        font-size:55px;
+      }
+
+      .container{
+        grid-template-columns:1fr;
+      }
+
+      .section{
+        padding:30px 20px;
+      }
+
+      td{
+        font-size:18px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <header>
+
+    <div class="logo">
+      LUTA<span>BET</span>
+    </div>
+
+    <nav>
+      <a href="#">Início</a>
+      <a href="#">Lutas</a>
+      <a href="#">Atletas</a>
+      <a href="#">Apostar</a>
+    </nav>
+
+    <button class="btn-login">
+      Login/Cadastro
+    </button>
+
+  </header>
+
+  <section class="hero">
+
+    <h1>
+      APOSTAS <br>
+      EM LUTAS
+    </h1>
+
+  </section>
+
+  <section class="section">
+
+    <h2>PRÓXIMAS LUTAS</h2>
+
+    <div class="container">
+
+      <!-- MODALIDADES -->
+
+      <div class="sports">
+
+        <div class="card">
+          <div class="icon">🥊</div>
+          <p>MMA</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">🥋</div>
+          <p>Jiu-Jitsu</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">🤜</div>
+          <p>Karatê</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">🔥</div>
+          <p>Fight</p>
+        </div>
+
+      </div>
+
+      <!-- TABELA -->
+
+      <div class="table-box">
+
+        <table>
+
+          <thead>
+            <tr>
+              <th>Evento</th>
+              <th>Odds 1</th>
+              <th>Odds 2</th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+            <tr>
+              <td>Sousa vs. Oliveira</td>
+              <td>1.75</td>
+              <td>2.05</td>
+            </tr>
+
+            <tr>
+              <td>Kimura vs. Silva</td>
+              <td>1.80</td>
+              <td>1.80</td>
+            </tr>
+
+            <tr>
+              <td>Johnson vs. Costa</td>
+              <td>2.35</td>
+              <td>2.30</td>
+            </tr>
+
+            <tr>
+              <td>Mori vs. Díaz</td>
+              <td>1.75</td>
+              <td>2.05</td>
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</body>
+  </html>
