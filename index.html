@@ -1,4 +1,3 @@
-# Lutabet
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -15,16 +14,13 @@
     }
 
     body{
-      background:#050505;
+      background:#030303;
       color:white;
     }
 
-    /* HEADER */
-
     header{
-      width:100%;
       height:90px;
-      background:#0b0b0b;
+      background:#070707;
       display:flex;
       align-items:center;
       justify-content:space-between;
@@ -33,110 +29,119 @@
     }
 
     .logo{
-      font-size:40px;
+      font-size:38px;
       font-weight:900;
+      font-style:italic;
     }
 
     .logo span{
       color:#e53935;
-      font-style:italic;
     }
 
     nav{
       display:flex;
-      gap:50px;
+      gap:45px;
     }
 
     nav a{
+      color:white;
       text-decoration:none;
-      color:white;
       font-size:18px;
-      transition:0.3s;
-    }
-
-    nav a:hover{
-      color:#e53935;
-    }
-
-    .btn-login{
-      background:#1a1a1a;
-      color:white;
-      border:none;
-      padding:15px 28px;
-      border-radius:10px;
-      font-size:16px;
       cursor:pointer;
-      transition:0.3s;
     }
 
-    .btn-login:hover{
-      background:#e53935;
+    .login{
+      background:#151515;
+      padding:15px 25px;
+      border-radius:10px;
+      font-weight:bold;
     }
 
-    /* HERO */
+    .page{
+      display:none;
+      padding:50px 70px;
+      min-height:calc(100vh - 90px);
+    }
+
+    .active{
+      display:block;
+    }
 
     .hero{
-      position:relative;
       height:520px;
-      background:
-      linear-gradient(
-        rgba(0,0,0,0.6),
-        rgba(0,0,0,0.7)
-      ),
-      url('https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?q=80&w=1974&auto=format&fit=crop');
-      background-size:cover;
-      background-position:center;
       display:flex;
       align-items:center;
       justify-content:center;
       text-align:center;
+      background:
+      linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.9)),
+      url("https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?q=80&w=1900&auto=format&fit=crop");
+      background-size:cover;
+      background-position:center;
     }
 
     .hero h1{
-      font-size:90px;
+      font-size:80px;
+      line-height:.95;
+      font-weight:900;
       text-transform:uppercase;
-      line-height:0.9;
-      font-weight:900;
-      text-shadow:0 10px 20px rgba(0,0,0,0.7);
     }
 
-    /* SECTION */
-
-    .section{
-      padding:50px 60px;
+    h2{
+      font-size:60px;
+      text-align:center;
+      margin-bottom:45px;
+      text-transform:uppercase;
     }
 
-    .section h2{
-      font-size:55px;
-      margin-bottom:30px;
-      font-weight:900;
+    .menu-box{
+      max-width:850px;
+      margin:0 auto;
+      border:1px solid #222;
+      border-radius:16px;
+      overflow:hidden;
+      background:#080808;
     }
 
-    .container{
+    .option{
+      padding:30px 35px;
+      font-size:34px;
+      font-weight:bold;
+      border-bottom:1px solid #222;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      cursor:pointer;
+      transition:.3s;
+    }
+
+    .option:hover{
+      background:#151515;
+      color:#e53935;
+    }
+
+    .option:last-child{
+      border-bottom:none;
+    }
+
+    .cards{
       display:grid;
-      grid-template-columns:280px 1fr;
-      gap:30px;
-    }
-
-    /* SPORTS */
-
-    .sports{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:18px;
+      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+      gap:25px;
+      max-width:900px;
+      margin:0 auto;
     }
 
     .card{
-      background:#101010;
-      height:150px;
-      border-radius:15px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      gap:15px;
-      transition:0.3s;
-      border:1px solid #1f1f1f;
+      background:#111;
+      border:1px solid #222;
+      border-radius:18px;
+      padding:35px 20px;
+      text-align:center;
+      font-size:28px;
+      font-weight:bold;
+      cursor:pointer;
+      transition:.3s;
     }
 
     .card:hover{
@@ -144,58 +149,120 @@
       border-color:#e53935;
     }
 
-    .card .icon{
-      font-size:45px;
-    }
-
-    .card p{
-      font-size:22px;
-      font-weight:700;
-    }
-
-    /* TABLE */
-
-    .table-box{
-      background:#101010;
-      border-radius:18px;
+    .tabs{
+      max-width:700px;
+      margin:0 auto 50px;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      border:1px solid #222;
+      border-radius:16px;
       overflow:hidden;
-      border:1px solid #1f1f1f;
     }
 
-    table{
-      width:100%;
-      border-collapse:collapse;
-    }
-
-    th{
+    .tab{
       padding:25px;
-      font-size:22px;
-      text-align:left;
-      background:#121212;
-    }
-
-    td{
-      padding:28px 25px;
-      border-top:1px solid #1d1d1d;
-      font-size:28px;
-      font-weight:700;
-    }
-
-    td:nth-child(2),
-    td:nth-child(3),
-    th:nth-child(2),
-    th:nth-child(3){
       text-align:center;
+      font-size:30px;
+      font-weight:bold;
+      cursor:pointer;
+      background:#080808;
     }
 
-    tr:hover{
-      background:#181818;
+    .tab.active-tab{
+      background:#1c1c1c;
     }
 
-    @media(max-width:900px){
+    .athletes{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+      gap:25px;
+      max-width:950px;
+      margin:0 auto 50px;
+    }
 
+    .athlete{
+      text-align:center;
+      cursor:pointer;
+    }
+
+    .athlete img{
+      width:110px;
+      height:110px;
+      object-fit:cover;
+      border-radius:50%;
+      border:2px solid #222;
+      margin-bottom:10px;
+    }
+
+    .athlete p{
+      font-size:24px;
+      font-weight:bold;
+    }
+
+    .podium{
+      max-width:850px;
+      margin:40px auto;
+      display:flex;
+      justify-content:center;
+      align-items:flex-end;
+      gap:20px;
+    }
+
+    .place{
+      background:#003b12;
+      width:220px;
+      text-align:center;
+      border-radius:12px 12px 0 0;
+      font-size:35px;
+      font-weight:bold;
+      padding:30px 10px;
+    }
+
+    .first{
+      height:210px;
+      background:#00551b;
+    }
+
+    .second{
+      height:150px;
+    }
+
+    .third{
+      height:120px;
+    }
+
+    .bet-btn{
+      display:block;
+      margin:40px auto 0;
+      background:#008a35;
+      color:white;
+      border:none;
+      padding:25px 70px;
+      border-radius:18px;
+      font-size:38px;
+      font-weight:bold;
+      cursor:pointer;
+    }
+
+    .back{
+      margin-bottom:25px;
+      background:none;
+      color:white;
+      border:1px solid #333;
+      padding:12px 20px;
+      border-radius:8px;
+      cursor:pointer;
+    }
+
+    .result{
+      text-align:center;
+      font-size:35px;
+      margin-top:30px;
+    }
+
+    @media(max-width:800px){
       header{
-        padding:20px;
+        padding:0 20px;
       }
 
       nav{
@@ -203,136 +270,267 @@
       }
 
       .hero h1{
-        font-size:55px;
+        font-size:48px;
       }
 
-      .container{
-        grid-template-columns:1fr;
+      .page{
+        padding:35px 20px;
       }
 
-      .section{
-        padding:30px 20px;
+      h2{
+        font-size:38px;
       }
 
-      td{
-        font-size:18px;
+      .option{
+        font-size:26px;
+      }
+
+      .podium{
+        gap:8px;
+      }
+
+      .place{
+        width:30%;
+        font-size:24px;
       }
     }
-
   </style>
 </head>
 
 <body>
 
   <header>
-
-    <div class="logo">
-      LUTA<span>BET</span>
-    </div>
+    <div class="logo">LUTA<span>BET</span></div>
 
     <nav>
-      <a href="#">Início</a>
-      <a href="#">Lutas</a>
-      <a href="#">Atletas</a>
-      <a href="#">Apostar</a>
+      <a onclick="showPage('home')">Início</a>
+      <a onclick="showPage('modalidades')">Lutas</a>
+      <a>Atletas</a>
+      <a>Apostar</a>
     </nav>
 
-    <button class="btn-login">
-      Login/Cadastro
-    </button>
-
+    <div class="login">Login/Cadastro</div>
   </header>
 
-  <section class="hero">
-
-    <h1>
-      APOSTAS <br>
-      EM LUTAS
-    </h1>
-
-  </section>
-
-  <section class="section">
-
-    <h2>PRÓXIMAS LUTAS</h2>
-
-    <div class="container">
-
-      <!-- MODALIDADES -->
-
-      <div class="sports">
-
-        <div class="card">
-          <div class="icon">🥊</div>
-          <p>MMA</p>
-        </div>
-
-        <div class="card">
-          <div class="icon">🥋</div>
-          <p>Jiu-Jitsu</p>
-        </div>
-
-        <div class="card">
-          <div class="icon">🤜</div>
-          <p>Karatê</p>
-        </div>
-
-        <div class="card">
-          <div class="icon">🔥</div>
-          <p>Fight</p>
-        </div>
-
-      </div>
-
-      <!-- TABELA -->
-
-      <div class="table-box">
-
-        <table>
-
-          <thead>
-            <tr>
-              <th>Evento</th>
-              <th>Odds 1</th>
-              <th>Odds 2</th>
-            </tr>
-          </thead>
-
-          <tbody>
-
-            <tr>
-              <td>Sousa vs. Oliveira</td>
-              <td>1.75</td>
-              <td>2.05</td>
-            </tr>
-
-            <tr>
-              <td>Kimura vs. Silva</td>
-              <td>1.80</td>
-              <td>1.80</td>
-            </tr>
-
-            <tr>
-              <td>Johnson vs. Costa</td>
-              <td>2.35</td>
-              <td>2.30</td>
-            </tr>
-
-            <tr>
-              <td>Mori vs. Díaz</td>
-              <td>1.75</td>
-              <td>2.05</td>
-            </tr>
-
-          </tbody>
-
-        </table>
-
-      </div>
-
+  <section id="home" class="active">
+    <div class="hero">
+      <h1>Apostas em<br>Lutas</h1>
     </div>
 
+    <div class="page active">
+      <h2>Escolha a modalidade</h2>
+
+      <div class="cards">
+        <div class="card" onclick="selectSport('Judô')">Judô</div>
+        <div class="card" onclick="selectSport('MMA')">MMA</div>
+        <div class="card" onclick="selectSport('Jiu-Jitsu')">Jiu-Jitsu</div>
+        <div class="card" onclick="selectSport('Capoeira')">Capoeira</div>
+      </div>
+    </div>
   </section>
 
+  <section id="modalidades" class="page">
+    <button class="back" onclick="showPage('home')">← Voltar</button>
+
+    <h2>Escolha o tipo</h2>
+
+    <div class="menu-box">
+      <div class="option" onclick="selectLevel('Estadual')">
+        Judô Estadual <span>›</span>
+      </div>
+
+      <div class="option" onclick="selectLevel('Nacional')">
+        Judô Nacional <span>›</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="eventos" class="page">
+    <button class="back" onclick="showPage('modalidades')">← Voltar</button>
+
+    <h2 id="eventTitle">Judô Estadual</h2>
+
+    <div class="menu-box">
+      <div class="option" onclick="selectEvent('Copa São Paulo de Judô')">
+        <span>5&nbsp;&nbsp; Copa São Paulo de Judô</span> <span>›</span>
+      </div>
+
+      <div class="option" onclick="selectEvent('Torneio Taça Bahia')">
+        <span>14&nbsp;&nbsp; Torneio Taça Bahia</span> <span>›</span>
+      </div>
+
+      <div class="option" onclick="selectEvent('Open Pernambucano de Judô')">
+        <span>20&nbsp;&nbsp; Open Pernambucano de Judô</span> <span>›</span>
+      </div>
+
+      <div class="option" onclick="selectEvent('Campeonato Mineiro')">
+        <span>1&nbsp;&nbsp; Campeonato Mineiro</span> <span>›</span>
+      </div>
+
+      <div class="option" onclick="selectEvent('Open Judô Amazonas')">
+        <span>19&nbsp;&nbsp; Open Judô Amazonas</span> <span>›</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="categorias" class="page">
+    <button class="back" onclick="showPage('eventos')">← Voltar</button>
+
+    <h2 id="categoryTitle">Copa São Paulo de Judô</h2>
+
+    <div class="tabs">
+      <div class="tab active-tab" onclick="selectGender('Masculino')">Masculino</div>
+      <div class="tab" onclick="selectGender('Feminino')">Feminino</div>
+    </div>
+
+    <div class="cards">
+      <div class="card" onclick="selectCategory('-60 kg')">-60 kg</div>
+      <div class="card" onclick="selectCategory('-66 kg')">-66 kg</div>
+      <div class="card" onclick="selectCategory('-73 kg')">-73 kg</div>
+      <div class="card" onclick="selectCategory('-81 kg')">-81 kg</div>
+      <div class="card" onclick="selectCategory('-90 kg')">-90 kg</div>
+      <div class="card" onclick="selectCategory('+100 kg')">+100 kg</div>
+    </div>
+  </section>
+
+  <section id="vencedor" class="page">
+    <button class="back" onclick="showPage('categorias')">← Voltar</button>
+
+    <h2 id="winnerTitle">Selecione o vencedor</h2>
+
+    <div class="athletes">
+      <div class="athlete" onclick="selectWinner('Pereira')">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg">
+        <p>Pereira</p>
+      </div>
+
+      <div class="athlete" onclick="selectWinner('Costa')">
+        <img src="https://randomuser.me/api/portraits/men/12.jpg">
+        <p>Costa</p>
+      </div>
+
+      <div class="athlete" onclick="selectWinner('Silva')">
+        <img src="https://randomuser.me/api/portraits/men/45.jpg">
+        <p>Silva</p>
+      </div>
+
+      <div class="athlete" onclick="selectWinner('Rossi')">
+        <img src="https://randomuser.me/api/portraits/men/22.jpg">
+        <p>Rossi</p>
+      </div>
+
+      <div class="athlete" onclick="selectWinner('Oliveira')">
+        <img src="https://randomuser.me/api/portraits/men/41.jpg">
+        <p>Oliveira</p>
+      </div>
+
+      <div class="athlete" onclick="selectWinner('Sousa')">
+        <img src="https://randomuser.me/api/portraits/men/55.jpg">
+        <p>Sousa</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="aposta" class="page">
+    <button class="back" onclick="showPage('vencedor')">← Voltar</button>
+
+    <h2>Confirme sua aposta</h2>
+
+    <div class="podium">
+      <div class="place second">2º</div>
+      <div class="place first" id="podiumWinner">1º</div>
+      <div class="place third">3º</div>
+    </div>
+
+    <div class="result" id="betInfo"></div>
+
+    <button class="bet-btn" onclick="confirmBet()">Apostar</button>
+
+    <div class="result" id="success"></div>
+  </section>
+
+  <script>
+    let sport = "Judô";
+    let level = "";
+    let eventName = "";
+    let gender = "Masculino";
+    let category = "";
+    let winner = "";
+
+    function hideAll(){
+      document.querySelectorAll(".page, #home").forEach(el => {
+        el.classList.remove("active");
+      });
+    }
+
+    function showPage(id){
+      hideAll();
+      document.getElementById(id).classList.add("active");
+    }
+
+    function selectSport(value){
+      sport = value;
+
+      if(value !== "Judô"){
+        alert("Demonstração disponível para Judô.");
+        sport = "Judô";
+      }
+
+      showPage("modalidades");
+    }
+
+    function selectLevel(value){
+      level = value;
+      document.getElementById("eventTitle").innerText = sport + " " + level;
+      showPage("eventos");
+    }
+
+    function selectEvent(value){
+      eventName = value;
+      document.getElementById("categoryTitle").innerText = eventName;
+      showPage("categorias");
+    }
+
+    function selectGender(value){
+      gender = value;
+
+      document.querySelectorAll(".tab").forEach(tab => {
+        tab.classList.remove("active-tab");
+      });
+
+      event.target.classList.add("active-tab");
+    }
+
+    function selectCategory(value){
+      category = value;
+      document.getElementById("winnerTitle").innerText =
+      "Selecione o vencedor na categoria " + category;
+
+      showPage("vencedor");
+    }
+
+    function selectWinner(value){
+      winner = value;
+
+      document.getElementById("podiumWinner").innerHTML =
+      winner + "<br><br>1º";
+
+      document.getElementById("betInfo").innerHTML =
+      "Modalidade: " + sport + "<br>" +
+      "Competição: " + level + "<br>" +
+      "Evento: " + eventName + "<br>" +
+      "Gênero: " + gender + "<br>" +
+      "Categoria: " + category + "<br>" +
+      "Vencedor escolhido: " + winner;
+
+      showPage("aposta");
+    }
+
+    function confirmBet(){
+      document.getElementById("success").innerHTML =
+      "✅ Aposta registrada com sucesso!";
+    }
+  </script>
+
 </body>
-  </html>
+</html>
