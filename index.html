@@ -1,297 +1,470 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LutaBet</title>
 
   <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family:Arial, Helvetica, sans-serif;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
     }
 
-    body{
-      background:#030303;
-      color:white;
+    body {
+      background: #020202;
+      color: white;
+      overflow-x: hidden;
     }
 
-    header{
-      height:90px;
-      background:#070707;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:0 60px;
-      border-bottom:1px solid #1b1b1b;
+    header {
+      height: 85px;
+      background: #070707;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 55px;
+      border-bottom: 1px solid #151515;
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
 
-    .logo{
-      font-size:38px;
-      font-weight:900;
-      font-style:italic;
+    .logo {
+      font-size: 36px;
+      font-weight: 900;
+      font-style: italic;
     }
 
-    .logo span{
-      color:#e53935;
+    .logo span {
+      color: #e53935;
     }
 
-    nav{
-      display:flex;
-      gap:45px;
+    nav {
+      display: flex;
+      gap: 40px;
     }
 
-    nav a{
-      color:white;
-      text-decoration:none;
-      font-size:18px;
-      cursor:pointer;
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      cursor: pointer;
     }
 
-    .login{
-      background:#151515;
-      padding:15px 25px;
-      border-radius:10px;
-      font-weight:bold;
+    .login {
+      background: #171717;
+      padding: 14px 24px;
+      border-radius: 10px;
+      font-weight: bold;
     }
 
-    .page{
-      display:none;
-      padding:50px 70px;
-      min-height:calc(100vh - 90px);
+    .page {
+      display: none;
+      min-height: calc(100vh - 85px);
+      padding: 45px 70px;
+      animation: fadeIn .5s ease;
     }
 
-    .active{
-      display:block;
+    .active {
+      display: block;
     }
 
-    .hero{
-      height:520px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero {
+      min-height: 520px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
       background:
-      linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.9)),
-      url("https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?q=80&w=1900&auto=format&fit=crop");
-      background-size:cover;
-      background-position:center;
+        linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.9)),
+        url("https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?q=80&w=1900&auto=format&fit=crop");
+      background-size: cover;
+      background-position: center;
+      animation: zoomHero 8s infinite alternate ease-in-out;
     }
 
-    .hero h1{
-      font-size:80px;
-      line-height:.95;
-      font-weight:900;
-      text-transform:uppercase;
-    }
-
-    h2{
-      font-size:60px;
-      text-align:center;
-      margin-bottom:45px;
-      text-transform:uppercase;
-    }
-
-    .menu-box{
-      max-width:850px;
-      margin:0 auto;
-      border:1px solid #222;
-      border-radius:16px;
-      overflow:hidden;
-      background:#080808;
-    }
-
-    .option{
-      padding:30px 35px;
-      font-size:34px;
-      font-weight:bold;
-      border-bottom:1px solid #222;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      cursor:pointer;
-      transition:.3s;
-    }
-
-    .option:hover{
-      background:#151515;
-      color:#e53935;
-    }
-
-    .option:last-child{
-      border-bottom:none;
-    }
-
-    .cards{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-      gap:25px;
-      max-width:900px;
-      margin:0 auto;
-    }
-
-    .card{
-      background:#111;
-      border:1px solid #222;
-      border-radius:18px;
-      padding:35px 20px;
-      text-align:center;
-      font-size:28px;
-      font-weight:bold;
-      cursor:pointer;
-      transition:.3s;
-    }
-
-    .card:hover{
-      transform:translateY(-5px);
-      border-color:#e53935;
-    }
-
-    .tabs{
-      max-width:700px;
-      margin:0 auto 50px;
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      border:1px solid #222;
-      border-radius:16px;
-      overflow:hidden;
-    }
-
-    .tab{
-      padding:25px;
-      text-align:center;
-      font-size:30px;
-      font-weight:bold;
-      cursor:pointer;
-      background:#080808;
-    }
-
-    .tab.active-tab{
-      background:#1c1c1c;
-    }
-
-    .athletes{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
-      gap:25px;
-      max-width:950px;
-      margin:0 auto 50px;
-    }
-
-    .athlete{
-      text-align:center;
-      cursor:pointer;
-    }
-
-    .athlete img{
-      width:110px;
-      height:110px;
-      object-fit:cover;
-      border-radius:50%;
-      border:2px solid #222;
-      margin-bottom:10px;
-    }
-
-    .athlete p{
-      font-size:24px;
-      font-weight:bold;
-    }
-
-    .podium{
-      max-width:850px;
-      margin:40px auto;
-      display:flex;
-      justify-content:center;
-      align-items:flex-end;
-      gap:20px;
-    }
-
-    .place{
-      background:#003b12;
-      width:220px;
-      text-align:center;
-      border-radius:12px 12px 0 0;
-      font-size:35px;
-      font-weight:bold;
-      padding:30px 10px;
-    }
-
-    .first{
-      height:210px;
-      background:#00551b;
-    }
-
-    .second{
-      height:150px;
-    }
-
-    .third{
-      height:120px;
-    }
-
-    .bet-btn{
-      display:block;
-      margin:40px auto 0;
-      background:#008a35;
-      color:white;
-      border:none;
-      padding:25px 70px;
-      border-radius:18px;
-      font-size:38px;
-      font-weight:bold;
-      cursor:pointer;
-    }
-
-    .back{
-      margin-bottom:25px;
-      background:none;
-      color:white;
-      border:1px solid #333;
-      padding:12px 20px;
-      border-radius:8px;
-      cursor:pointer;
-    }
-
-    .result{
-      text-align:center;
-      font-size:35px;
-      margin-top:30px;
-    }
-
-    @media(max-width:800px){
-      header{
-        padding:0 20px;
+    @keyframes zoomHero {
+      from {
+        background-size: 100%;
       }
 
-      nav{
-        display:none;
+      to {
+        background-size: 112%;
+      }
+    }
+
+    .hero h1 {
+      font-size: 82px;
+      line-height: .95;
+      font-weight: 900;
+      text-transform: uppercase;
+      text-shadow: 0 0 25px black;
+      animation: pulseTitle 2.5s infinite ease-in-out;
+    }
+
+    @keyframes pulseTitle {
+      0%, 100% {
+        transform: scale(1);
       }
 
-      .hero h1{
-        font-size:48px;
+      50% {
+        transform: scale(1.04);
+      }
+    }
+
+    h2 {
+      font-size: 55px;
+      text-align: center;
+      margin-bottom: 40px;
+      text-transform: uppercase;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 24px;
+      max-width: 950px;
+      margin: auto;
+    }
+
+    .card {
+      background: #101010;
+      border: 1px solid #232323;
+      border-radius: 18px;
+      padding: 35px 18px;
+      text-align: center;
+      font-size: 27px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: .3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px) scale(1.03);
+      border-color: #e53935;
+      box-shadow: 0 0 25px rgba(229,57,53,.25);
+    }
+
+    .menu-box {
+      max-width: 850px;
+      margin: auto;
+      border: 1px solid #222;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #090909;
+    }
+
+    .option {
+      padding: 28px 35px;
+      font-size: 32px;
+      font-weight: bold;
+      border-bottom: 1px solid #222;
+      display: flex;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: .3s;
+    }
+
+    .option:hover {
+      background: #151515;
+      color: #e53935;
+    }
+
+    .option:last-child {
+      border-bottom: none;
+    }
+
+    .tabs {
+      max-width: 650px;
+      margin: 0 auto 45px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid #222;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .tab {
+      padding: 22px;
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+      background: #090909;
+    }
+
+    .active-tab {
+      background: #1f1f1f;
+      color: #fff;
+    }
+
+    .athletes {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
+      gap: 30px;
+      max-width: 980px;
+      margin: auto;
+    }
+
+    .athlete {
+      text-align: center;
+      cursor: pointer;
+      transition: .3s;
+      padding: 10px;
+      border-radius: 18px;
+    }
+
+    .athlete:hover {
+      transform: translateY(-6px) scale(1.04);
+      background: #111;
+    }
+
+    .athlete.selected {
+      outline: 3px solid #00a843;
+      background: #102515;
+    }
+
+    .face {
+      width: 110px;
+      height: 110px;
+      margin: auto;
+      border-radius: 50%;
+      background-size: cover;
+      background-position: center;
+      border: 2px solid #333;
+      animation: faceFloat 3s infinite ease-in-out;
+    }
+
+    @keyframes faceFloat {
+      0%, 100% {
+        transform: translateY(0);
       }
 
-      .page{
-        padding:35px 20px;
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    .judogi {
+      width: 125px;
+      height: 90px;
+      margin: -10px auto 5px;
+      background: linear-gradient(135deg, #fff, #dcdcdc);
+      clip-path: polygon(10% 0, 45% 0, 50% 25%, 55% 0, 90% 0, 100% 100%, 0 100%);
+      border-radius: 10px;
+    }
+
+    .athlete p {
+      font-size: 23px;
+      font-weight: bold;
+    }
+
+    .instruction {
+      text-align: center;
+      font-size: 28px;
+      margin-bottom: 35px;
+      color: #ddd;
+    }
+
+    .selection-box {
+      max-width: 850px;
+      margin: 40px auto;
+      background: #0b0b0b;
+      border: 1px solid #222;
+      border-radius: 18px;
+      padding: 25px;
+      text-align: center;
+      font-size: 24px;
+      line-height: 1.8;
+    }
+
+    .next-btn, .back, .bet-btn {
+      cursor: pointer;
+      border: none;
+      color: white;
+      font-weight: bold;
+      transition: .3s;
+    }
+
+    .next-btn {
+      display: block;
+      margin: 30px auto 0;
+      background: #008a35;
+      padding: 18px 45px;
+      border-radius: 14px;
+      font-size: 25px;
+    }
+
+    .next-btn:hover, .bet-btn:hover {
+      transform: scale(1.05);
+      background: #00a843;
+    }
+
+    .back {
+      margin-bottom: 25px;
+      background: none;
+      border: 1px solid #333;
+      padding: 12px 18px;
+      border-radius: 8px;
+    }
+
+    .podium-area {
+      max-width: 1000px;
+      margin: auto;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .podium-card {
+      width: 30%;
+      text-align: center;
+      animation: rise .8s ease;
+    }
+
+    @keyframes rise {
+      from {
+        transform: translateY(80px);
+        opacity: 0;
       }
 
-      h2{
-        font-size:38px;
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .podium-card .big-face {
+      width: 145px;
+      height: 145px;
+      border-radius: 50%;
+      background-size: cover;
+      background-position: center;
+      margin: auto;
+      border: 3px solid #444;
+    }
+
+    .big-judogi {
+      width: 180px;
+      height: 165px;
+      margin: -5px auto 0;
+      background: linear-gradient(135deg, #ffffff, #d9d9d9);
+      clip-path: polygon(10% 0, 42% 0, 50% 28%, 58% 0, 90% 0, 100% 100%, 0 100%);
+      border-radius: 15px;
+    }
+
+    .podium-name {
+      font-size: 28px;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    .block {
+      background: #003b12;
+      border: 1px solid #005c1d;
+      border-radius: 12px 12px 0 0;
+      font-size: 45px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .first .block {
+      height: 210px;
+      background: #006622;
+    }
+
+    .second .block {
+      height: 155px;
+    }
+
+    .third .block {
+      height: 125px;
+    }
+
+    .bet-btn {
+      display: block;
+      margin: 45px auto 0;
+      background: #008a35;
+      padding: 24px 75px;
+      border-radius: 18px;
+      font-size: 38px;
+    }
+
+    .success {
+      text-align: center;
+      font-size: 30px;
+      margin-top: 30px;
+      color: #00d35a;
+    }
+
+    @media(max-width:800px) {
+      header {
+        padding: 0 18px;
       }
 
-      .option{
-        font-size:26px;
+      nav {
+        display: none;
       }
 
-      .podium{
-        gap:8px;
+      .page {
+        padding: 35px 18px;
       }
 
-      .place{
-        width:30%;
-        font-size:24px;
+      .hero h1 {
+        font-size: 50px;
+      }
+
+      h2 {
+        font-size: 36px;
+      }
+
+      .option {
+        font-size: 24px;
+      }
+
+      .podium-area {
+        gap: 6px;
+      }
+
+      .podium-card {
+        width: 33%;
+      }
+
+      .podium-card .big-face {
+        width: 90px;
+        height: 90px;
+      }
+
+      .big-judogi {
+        width: 100px;
+        height: 110px;
+      }
+
+      .podium-name {
+        font-size: 18px;
+      }
+
+      .block {
+        font-size: 30px;
       }
     }
   </style>
@@ -299,238 +472,286 @@
 
 <body>
 
-  <header>
-    <div class="logo">LUTA<span>BET</span></div>
+<header>
+  <div class="logo">LUTA<span>BET</span></div>
 
-    <nav>
-      <a onclick="showPage('home')">Início</a>
-      <a onclick="showPage('modalidades')">Lutas</a>
-      <a>Atletas</a>
-      <a>Apostar</a>
-    </nav>
+  <nav>
+    <a onclick="showPage('home')">Início</a>
+    <a onclick="showPage('modalidades')">Lutas</a>
+    <a onclick="showPage('vencedores')">Atletas</a>
+    <a onclick="showPage('podio')">Apostar</a>
+  </nav>
 
-    <div class="login">Login/Cadastro</div>
-  </header>
+  <div class="login">Login/Cadastro</div>
+</header>
 
-  <section id="home" class="active">
-    <div class="hero">
-      <h1>Apostas em<br>Lutas</h1>
-    </div>
+<section id="home" class="active">
+  <div class="hero">
+    <h1>Apostas em<br>Lutas</h1>
+  </div>
 
-    <div class="page active">
-      <h2>Escolha a modalidade</h2>
-
-      <div class="cards">
-        <div class="card" onclick="selectSport('Judô')">Judô</div>
-        <div class="card" onclick="selectSport('MMA')">MMA</div>
-        <div class="card" onclick="selectSport('Jiu-Jitsu')">Jiu-Jitsu</div>
-        <div class="card" onclick="selectSport('Capoeira')">Capoeira</div>
-      </div>
-    </div>
-  </section>
-
-  <section id="modalidades" class="page">
-    <button class="back" onclick="showPage('home')">← Voltar</button>
-
-    <h2>Escolha o tipo</h2>
-
-    <div class="menu-box">
-      <div class="option" onclick="selectLevel('Estadual')">
-        Judô Estadual <span>›</span>
-      </div>
-
-      <div class="option" onclick="selectLevel('Nacional')">
-        Judô Nacional <span>›</span>
-      </div>
-    </div>
-  </section>
-
-  <section id="eventos" class="page">
-    <button class="back" onclick="showPage('modalidades')">← Voltar</button>
-
-    <h2 id="eventTitle">Judô Estadual</h2>
-
-    <div class="menu-box">
-      <div class="option" onclick="selectEvent('Copa São Paulo de Judô')">
-        <span>5&nbsp;&nbsp; Copa São Paulo de Judô</span> <span>›</span>
-      </div>
-
-      <div class="option" onclick="selectEvent('Torneio Taça Bahia')">
-        <span>14&nbsp;&nbsp; Torneio Taça Bahia</span> <span>›</span>
-      </div>
-
-      <div class="option" onclick="selectEvent('Open Pernambucano de Judô')">
-        <span>20&nbsp;&nbsp; Open Pernambucano de Judô</span> <span>›</span>
-      </div>
-
-      <div class="option" onclick="selectEvent('Campeonato Mineiro')">
-        <span>1&nbsp;&nbsp; Campeonato Mineiro</span> <span>›</span>
-      </div>
-
-      <div class="option" onclick="selectEvent('Open Judô Amazonas')">
-        <span>19&nbsp;&nbsp; Open Judô Amazonas</span> <span>›</span>
-      </div>
-    </div>
-  </section>
-
-  <section id="categorias" class="page">
-    <button class="back" onclick="showPage('eventos')">← Voltar</button>
-
-    <h2 id="categoryTitle">Copa São Paulo de Judô</h2>
-
-    <div class="tabs">
-      <div class="tab active-tab" onclick="selectGender('Masculino')">Masculino</div>
-      <div class="tab" onclick="selectGender('Feminino')">Feminino</div>
-    </div>
+  <div class="page active">
+    <h2>Escolha a modalidade</h2>
 
     <div class="cards">
-      <div class="card" onclick="selectCategory('-60 kg')">-60 kg</div>
-      <div class="card" onclick="selectCategory('-66 kg')">-66 kg</div>
-      <div class="card" onclick="selectCategory('-73 kg')">-73 kg</div>
-      <div class="card" onclick="selectCategory('-81 kg')">-81 kg</div>
-      <div class="card" onclick="selectCategory('-90 kg')">-90 kg</div>
-      <div class="card" onclick="selectCategory('+100 kg')">+100 kg</div>
+      <div class="card" onclick="selectSport('Judô')">Judô</div>
+      <div class="card" onclick="selectSport('MMA')">MMA</div>
+      <div class="card" onclick="selectSport('Jiu-Jitsu')">Jiu-Jitsu</div>
+      <div class="card" onclick="selectSport('Capoeira')">Capoeira</div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="vencedor" class="page">
-    <button class="back" onclick="showPage('categorias')">← Voltar</button>
+<section id="modalidades" class="page">
+  <button class="back" onclick="showPage('home')">← Voltar</button>
+  <h2>Escolha o tipo</h2>
 
-    <h2 id="winnerTitle">Selecione o vencedor</h2>
+  <div class="menu-box">
+    <div class="option" onclick="selectLevel('Estadual')">Judô Estadual <span>›</span></div>
+    <div class="option" onclick="selectLevel('Nacional')">Judô Nacional <span>›</span></div>
+  </div>
+</section>
 
-    <div class="athletes">
-      <div class="athlete" onclick="selectWinner('Pereira')">
-        <img src="https://randomuser.me/api/portraits/men/32.jpg">
-        <p>Pereira</p>
-      </div>
+<section id="eventos" class="page">
+  <button class="back" onclick="showPage('modalidades')">← Voltar</button>
+  <h2 id="eventTitle">Judô Estadual</h2>
 
-      <div class="athlete" onclick="selectWinner('Costa')">
-        <img src="https://randomuser.me/api/portraits/men/12.jpg">
-        <p>Costa</p>
-      </div>
+  <div class="menu-box">
+    <div class="option" onclick="selectEvent('Copa São Paulo de Judô')">5 Copa São Paulo de Judô <span>›</span></div>
+    <div class="option" onclick="selectEvent('Torneio Taça Bahia')">14 Torneio Taça Bahia <span>›</span></div>
+    <div class="option" onclick="selectEvent('Open Pernambucano de Judô')">20 Open Pernambucano de Judô <span>›</span></div>
+    <div class="option" onclick="selectEvent('Campeonato Mineiro')">1 Campeonato Mineiro <span>›</span></div>
+    <div class="option" onclick="selectEvent('Open Judô Amazonas')">19 Open Judô Amazonas <span>›</span></div>
+  </div>
+</section>
 
-      <div class="athlete" onclick="selectWinner('Silva')">
-        <img src="https://randomuser.me/api/portraits/men/45.jpg">
-        <p>Silva</p>
-      </div>
+<section id="categorias" class="page">
+  <button class="back" onclick="showPage('eventos')">← Voltar</button>
+  <h2 id="categoryTitle">Copa São Paulo de Judô</h2>
 
-      <div class="athlete" onclick="selectWinner('Rossi')">
-        <img src="https://randomuser.me/api/portraits/men/22.jpg">
-        <p>Rossi</p>
-      </div>
+  <div class="tabs">
+    <div class="tab active-tab" onclick="selectGender('Masculino', this)">Masculino</div>
+    <div class="tab" onclick="selectGender('Feminino', this)">Feminino</div>
+  </div>
 
-      <div class="athlete" onclick="selectWinner('Oliveira')">
-        <img src="https://randomuser.me/api/portraits/men/41.jpg">
-        <p>Oliveira</p>
-      </div>
+  <div class="cards">
+    <div class="card" onclick="selectCategory('-60 kg')">-60 kg</div>
+    <div class="card" onclick="selectCategory('-66 kg')">-66 kg</div>
+    <div class="card" onclick="selectCategory('-73 kg')">-73 kg</div>
+    <div class="card" onclick="selectCategory('-81 kg')">-81 kg</div>
+    <div class="card" onclick="selectCategory('-90 kg')">-90 kg</div>
+    <div class="card" onclick="selectCategory('+100 kg')">+100 kg</div>
+  </div>
+</section>
 
-      <div class="athlete" onclick="selectWinner('Sousa')">
-        <img src="https://randomuser.me/api/portraits/men/55.jpg">
-        <p>Sousa</p>
-      </div>
+<section id="vencedores" class="page">
+  <button class="back" onclick="showPage('categorias')">← Voltar</button>
+
+  <h2 id="winnerTitle">Selecione o pódio</h2>
+  <div class="instruction" id="instruction">Escolha o atleta para o 1º lugar</div>
+
+  <div class="athletes" id="athleteList"></div>
+
+  <div class="selection-box" id="selectionBox">
+    1º lugar: não escolhido<br>
+    2º lugar: não escolhido<br>
+    3º lugar: não escolhido
+  </div>
+
+  <button class="next-btn" onclick="goToPodium()">Ver pódio</button>
+</section>
+
+<section id="podio" class="page">
+  <button class="back" onclick="showPage('vencedores')">← Voltar</button>
+  <h2>Confirme sua aposta</h2>
+
+  <div class="podium-area">
+    <div class="podium-card second">
+      <div class="big-face" id="face2"></div>
+      <div class="big-judogi"></div>
+      <div class="podium-name" id="name2">2º</div>
+      <div class="block">2</div>
     </div>
-  </section>
 
-  <section id="aposta" class="page">
-    <button class="back" onclick="showPage('vencedor')">← Voltar</button>
-
-    <h2>Confirme sua aposta</h2>
-
-    <div class="podium">
-      <div class="place second">2º</div>
-      <div class="place first" id="podiumWinner">1º</div>
-      <div class="place third">3º</div>
+    <div class="podium-card first">
+      <div class="big-face" id="face1"></div>
+      <div class="big-judogi"></div>
+      <div class="podium-name" id="name1">1º</div>
+      <div class="block">1</div>
     </div>
 
-    <div class="result" id="betInfo"></div>
+    <div class="podium-card third">
+      <div class="big-face" id="face3"></div>
+      <div class="big-judogi"></div>
+      <div class="podium-name" id="name3">3º</div>
+      <div class="block">3</div>
+    </div>
+  </div>
 
-    <button class="bet-btn" onclick="confirmBet()">Apostar</button>
+  <button class="bet-btn" onclick="confirmBet()">Apostar</button>
 
-    <div class="result" id="success"></div>
-  </section>
+  <div class="success" id="success"></div>
+</section>
 
-  <script>
-    let sport = "Judô";
-    let level = "";
-    let eventName = "";
-    let gender = "Masculino";
-    let category = "";
-    let winner = "";
+<script>
+  let sport = "Judô";
+  let level = "";
+  let eventName = "";
+  let gender = "Masculino";
+  let category = "";
+  let currentPlace = 1;
 
-    function hideAll(){
-      document.querySelectorAll(".page, #home").forEach(el => {
-        el.classList.remove("active");
-      });
+  let podium = {
+    1: null,
+    2: null,
+    3: null
+  };
+
+  const athletes = [
+    {name: "Pereira", img: "https://randomuser.me/api/portraits/men/32.jpg"},
+    {name: "Costa", img: "https://randomuser.me/api/portraits/men/12.jpg"},
+    {name: "Silva", img: "https://randomuser.me/api/portraits/men/45.jpg"},
+    {name: "Rossi", img: "https://randomuser.me/api/portraits/men/22.jpg"},
+    {name: "Oliveira", img: "https://randomuser.me/api/portraits/men/41.jpg"},
+    {name: "Sousa", img: "https://randomuser.me/api/portraits/men/55.jpg"},
+    {name: "Tanaka", img: "https://randomuser.me/api/portraits/men/49.jpg"},
+    {name: "Martins", img: "https://randomuser.me/api/portraits/men/71.jpg"},
+    {name: "Moretti", img: "https://randomuser.me/api/portraits/men/61.jpg"}
+  ];
+
+  function hideAll() {
+    document.querySelectorAll(".page, #home").forEach(el => {
+      el.classList.remove("active");
+    });
+  }
+
+  function showPage(id) {
+    hideAll();
+    document.getElementById(id).classList.add("active");
+    window.scrollTo(0,0);
+  }
+
+  function selectSport(value) {
+    sport = value;
+
+    if (value !== "Judô") {
+      alert("Demonstração disponível para Judô.");
+      sport = "Judô";
     }
 
-    function showPage(id){
-      hideAll();
-      document.getElementById(id).classList.add("active");
+    showPage("modalidades");
+  }
+
+  function selectLevel(value) {
+    level = value;
+    document.getElementById("eventTitle").innerText = sport + " " + level;
+    showPage("eventos");
+  }
+
+  function selectEvent(value) {
+    eventName = value;
+    document.getElementById("categoryTitle").innerText = eventName;
+    showPage("categorias");
+  }
+
+  function selectGender(value, element) {
+    gender = value;
+
+    document.querySelectorAll(".tab").forEach(tab => {
+      tab.classList.remove("active-tab");
+    });
+
+    element.classList.add("active-tab");
+  }
+
+  function selectCategory(value) {
+    category = value;
+    currentPlace = 1;
+    podium = {1:null, 2:null, 3:null};
+
+    document.getElementById("winnerTitle").innerText =
+      "Selecione o pódio na categoria " + category;
+
+    renderAthletes();
+    updateSelectionBox();
+    showPage("vencedores");
+  }
+
+  function renderAthletes() {
+    const list = document.getElementById("athleteList");
+    list.innerHTML = "";
+
+    athletes.forEach((athlete) => {
+      const selected = Object.values(podium).some(p => p && p.name === athlete.name);
+
+      list.innerHTML += `
+        <div class="athlete ${selected ? "selected" : ""}" onclick="selectAthlete('${athlete.name}')">
+          <div class="face" style="background-image:url('${athlete.img}')"></div>
+          <div class="judogi"></div>
+          <p>${athlete.name}</p>
+        </div>
+      `;
+    });
+  }
+
+  function selectAthlete(name) {
+    const athlete = athletes.find(a => a.name === name);
+
+    const alreadySelected = Object.values(podium).some(p => p && p.name === name);
+
+    if (alreadySelected) {
+      alert("Esse atleta já foi escolhido. Escolha outro.");
+      return;
     }
 
-    function selectSport(value){
-      sport = value;
+    podium[currentPlace] = athlete;
 
-      if(value !== "Judô"){
-        alert("Demonstração disponível para Judô.");
-        sport = "Judô";
-      }
-
-      showPage("modalidades");
+    if (currentPlace < 3) {
+      currentPlace++;
     }
 
-    function selectLevel(value){
-      level = value;
-      document.getElementById("eventTitle").innerText = sport + " " + level;
-      showPage("eventos");
+    updateSelectionBox();
+    renderAthletes();
+
+    document.getElementById("instruction").innerText =
+      currentPlace <= 3
+      ? "Escolha o atleta para o " + currentPlace + "º lugar"
+      : "Pódio completo! Clique em Ver pódio.";
+  }
+
+  function updateSelectionBox() {
+    document.getElementById("selectionBox").innerHTML =
+      "1º lugar: " + (podium[1] ? podium[1].name : "não escolhido") + "<br>" +
+      "2º lugar: " + (podium[2] ? podium[2].name : "não escolhido") + "<br>" +
+      "3º lugar: " + (podium[3] ? podium[3].name : "não escolhido");
+  }
+
+  function goToPodium() {
+    if (!podium[1] || !podium[2] || !podium[3]) {
+      alert("Escolha 1º, 2º e 3º lugar antes de continuar.");
+      return;
     }
 
-    function selectEvent(value){
-      eventName = value;
-      document.getElementById("categoryTitle").innerText = eventName;
-      showPage("categorias");
-    }
+    document.getElementById("face1").style.backgroundImage = `url('${podium[1].img}')`;
+    document.getElementById("face2").style.backgroundImage = `url('${podium[2].img}')`;
+    document.getElementById("face3").style.backgroundImage = `url('${podium[3].img}')`;
 
-    function selectGender(value){
-      gender = value;
+    document.getElementById("name1").innerText = podium[1].name;
+    document.getElementById("name2").innerText = podium[2].name;
+    document.getElementById("name3").innerText = podium[3].name;
 
-      document.querySelectorAll(".tab").forEach(tab => {
-        tab.classList.remove("active-tab");
-      });
+    document.getElementById("success").innerHTML = "";
 
-      event.target.classList.add("active-tab");
-    }
+    showPage("podio");
+  }
 
-    function selectCategory(value){
-      category = value;
-      document.getElementById("winnerTitle").innerText =
-      "Selecione o vencedor na categoria " + category;
-
-      showPage("vencedor");
-    }
-
-    function selectWinner(value){
-      winner = value;
-
-      document.getElementById("podiumWinner").innerHTML =
-      winner + "<br><br>1º";
-
-      document.getElementById("betInfo").innerHTML =
-      "Modalidade: " + sport + "<br>" +
-      "Competição: " + level + "<br>" +
-      "Evento: " + eventName + "<br>" +
-      "Gênero: " + gender + "<br>" +
-      "Categoria: " + category + "<br>" +
-      "Vencedor escolhido: " + winner;
-
-      showPage("aposta");
-    }
-
-    function confirmBet(){
-      document.getElementById("success").innerHTML =
-      "✅ Aposta registrada com sucesso!";
-    }
-  </script>
+  function confirmBet() {
+    document.getElementById("success").innerHTML =
+      "✅ Aposta registrada com sucesso!<br><br>" +
+      eventName + " | " + gender + " | " + category + "<br>" +
+      "1º " + podium[1].name + " | 2º " + podium[2].name + " | 3º " + podium[3].name;
+  }
+</script>
 
 </body>
-</html>
+  </html>
