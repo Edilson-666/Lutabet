@@ -20,12 +20,12 @@
     }
 
     header {
-      height: 70px;
+      height: 80px;
       background: #050505;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 28px;
+      padding: 0 60px;
       border-bottom: 1px solid #181818;
       position: sticky;
       top: 0;
@@ -33,7 +33,7 @@
     }
 
     .logo {
-      font-size: 28px;
+      font-size: 36px;
       font-weight: 900;
       font-style: italic;
     }
@@ -44,17 +44,17 @@
 
     .login {
       background: #141414;
-      padding: 10px 18px;
-      border-radius: 8px;
-      font-size: 13px;
+      padding: 14px 24px;
+      border-radius: 10px;
+      font-size: 16px;
       font-weight: bold;
       border: 1px solid #202020;
     }
 
     .screen {
       display: none;
-      min-height: calc(100vh - 70px);
-      padding: 28px;
+      min-height: calc(100vh - 80px);
+      padding: 40px;
       animation: fade .45s ease;
     }
 
@@ -67,19 +67,20 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .phone {
-      max-width: 520px;
+    .container {
+      width: 100%;
+      max-width: 1200px;
       margin: auto;
       border: 1px solid #242424;
-      border-radius: 16px;
+      border-radius: 18px;
       background: #050505;
       overflow: hidden;
       box-shadow: 0 0 40px rgba(0,0,0,.8);
     }
 
-    .phone-header {
-      height: 55px;
-      padding: 0 18px;
+    .topbar {
+      height: 65px;
+      padding: 0 28px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -88,7 +89,7 @@
     }
 
     .mini-logo {
-      font-size: 22px;
+      font-size: 28px;
       font-weight: 900;
       font-style: italic;
     }
@@ -99,24 +100,24 @@
 
     .mini-login {
       background: #151515;
-      padding: 8px 13px;
-      border-radius: 7px;
-      font-size: 11px;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 14px;
       border: 1px solid #222;
     }
 
     .hero {
-      height: 260px;
+      height: 460px;
       background:
-        linear-gradient(to bottom, rgba(0,0,0,.15), rgba(0,0,0,.9)),
-        url("https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?q=80&w=1600&auto=format&fit=crop");
+        linear-gradient(to bottom, rgba(0,0,0,.2), rgba(0,0,0,.9)),
+        url("https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?q=80&w=1800&auto=format&fit=crop");
       background-size: cover;
       background-position: center;
       display: flex;
       align-items: flex-end;
       justify-content: center;
       text-align: center;
-      padding-bottom: 35px;
+      padding-bottom: 70px;
       animation: zoom 7s infinite alternate ease-in-out;
     }
 
@@ -126,7 +127,7 @@
     }
 
     .hero h1 {
-      font-size: 43px;
+      font-size: 80px;
       line-height: .9;
       font-weight: 900;
       text-transform: uppercase;
@@ -138,95 +139,97 @@
     }
 
     .content {
-      padding: 28px 22px;
+      padding: 45px;
     }
 
     h2 {
       text-align: center;
-      font-size: 28px;
-      margin-bottom: 26px;
+      font-size: 42px;
+      margin-bottom: 35px;
       text-transform: uppercase;
     }
 
     .sport-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
+      gap: 22px;
     }
 
-    .sport-card {
-      background: #101010;
+    .sport-card,
+    .category,
+    .option {
+      background: linear-gradient(135deg, #111, #080808);
       border: 1px solid #252525;
-      border-radius: 10px;
-      padding: 15px 6px;
-      text-align: center;
+      border-radius: 14px;
       cursor: pointer;
       transition: .3s;
     }
 
-    .sport-card:hover {
+    .sport-card {
+      padding: 28px 10px;
+      text-align: center;
+    }
+
+    .sport-card:hover,
+    .category:hover,
+    .option:hover {
       border-color: #ff2424;
       transform: translateY(-5px);
+      box-shadow: 0 0 25px rgba(255,36,36,.25);
     }
 
     .sport-icon {
-      font-size: 30px;
-      margin-bottom: 8px;
+      font-size: 52px;
+      margin-bottom: 12px;
     }
 
     .sport-card p {
-      font-size: 13px;
+      font-size: 20px;
+      font-weight: bold;
     }
 
     .option-list {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 18px;
+      max-width: 850px;
+      margin: auto;
     }
 
     .option {
-      background: linear-gradient(135deg, #111, #080808);
-      border: 1px solid #242424;
-      border-radius: 10px;
-      padding: 22px;
-      font-size: 24px;
+      padding: 28px;
+      font-size: 28px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      cursor: pointer;
-      transition: .3s;
-    }
-
-    .option:hover {
-      border-color: #ff2424;
-      transform: translateX(5px);
     }
 
     .event-option {
-      font-size: 16px;
-      padding: 18px;
+      font-size: 23px;
     }
 
     .event-number {
       color: #ccc;
-      margin-right: 18px;
+      margin-right: 25px;
     }
 
     .tabs {
+      max-width: 700px;
+      margin: 0 auto 35px;
       display: grid;
       grid-template-columns: 1fr 1fr;
       border: 1px solid #242424;
-      border-radius: 10px;
+      border-radius: 12px;
       overflow: hidden;
-      margin-bottom: 28px;
     }
 
     .tab {
-      padding: 16px;
+      padding: 20px;
       text-align: center;
       background: #090909;
       cursor: pointer;
       font-weight: bold;
+      font-size: 22px;
     }
 
     .tab.selected {
@@ -237,28 +240,22 @@
     .category-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
+      gap: 22px;
+      max-width: 850px;
+      margin: auto;
     }
 
     .category {
-      background: #111;
-      border: 1px solid #222;
-      border-radius: 10px;
-      padding: 22px 8px;
+      padding: 30px 10px;
       text-align: center;
-      cursor: pointer;
-      transition: .3s;
-    }
-
-    .category:hover {
-      border-color: #ff2424;
-      background: #170707;
+      font-size: 24px;
+      font-weight: bold;
     }
 
     .choose-text {
       text-align: center;
-      font-size: 18px;
-      margin-bottom: 20px;
+      font-size: 25px;
+      margin-bottom: 30px;
     }
 
     .green {
@@ -268,39 +265,40 @@
 
     .athlete-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 18px;
     }
 
     .athlete {
       background: #0d0d0d;
       border: 1px solid #242424;
-      border-radius: 10px;
+      border-radius: 14px;
       overflow: hidden;
       cursor: pointer;
       position: relative;
       transition: .3s;
+      text-align: center;
+      padding-top: 18px;
     }
 
     .athlete:hover {
-      transform: translateY(-6px);
+      transform: translateY(-7px);
       border-color: #00c853;
     }
 
     .athlete.selected {
       border-color: #00c853;
-      box-shadow: 0 0 15px rgba(0,200,83,.4);
+      box-shadow: 0 0 18px rgba(0,200,83,.45);
     }
 
     .athlete.selected::after {
       content: "✓";
       position: absolute;
-      right: 8px;
-      bottom: 34px;
+      right: 10px;
+      bottom: 45px;
       background: #00c853;
-      color: white;
-      width: 25px;
-      height: 25px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -308,29 +306,96 @@
       font-weight: 900;
     }
 
-    .athlete-img {
-      height: 115px;
-      background-size: cover;
-      background-position: center top;
+    .fighter {
+      height: 210px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
       animation: floatFace 3s infinite ease-in-out;
     }
 
     @keyframes floatFace {
       0%,100% { transform: translateY(0); }
-      50% { transform: translateY(-5px); }
+      50% { transform: translateY(-6px); }
+    }
+
+    .head {
+      width: 68px;
+      height: 78px;
+      background: #c98b5a;
+      border-radius: 50% 50% 45% 45%;
+      position: absolute;
+      top: 8px;
+      z-index: 4;
+      box-shadow: inset -8px -5px 0 rgba(0,0,0,.18);
+    }
+
+    .hair {
+      width: 70px;
+      height: 32px;
+      background: #151515;
+      border-radius: 50% 50% 20% 20%;
+      position: absolute;
+      top: 0;
+      z-index: 5;
+    }
+
+    .eye {
+      width: 6px;
+      height: 6px;
+      background: #111;
+      border-radius: 50%;
+      position: absolute;
+      top: 38px;
+    }
+
+    .eye.left { left: 20px; }
+    .eye.right { right: 20px; }
+
+    .nose {
+      width: 7px;
+      height: 13px;
+      background: rgba(0,0,0,.18);
+      position: absolute;
+      top: 44px;
+      left: 30px;
+      border-radius: 5px;
+    }
+
+    .body {
+      width: 130px;
+      height: 125px;
+      background: linear-gradient(135deg, #fff, #dcdcdc);
+      position: absolute;
+      bottom: 0;
+      border-radius: 18px 18px 4px 4px;
+      clip-path: polygon(12% 0, 42% 0, 50% 34%, 58% 0, 88% 0, 100% 100%, 0 100%);
+      border: 1px solid #ccc;
+    }
+
+    .belt {
+      width: 120px;
+      height: 14px;
+      background: #050505;
+      position: absolute;
+      bottom: 30px;
+      border-radius: 10px;
+      z-index: 5;
     }
 
     .athlete-name {
-      padding: 9px;
+      padding: 13px;
       text-align: center;
       background: #080808;
-      font-size: 14px;
+      font-size: 18px;
+      font-weight: bold;
     }
 
     .summary {
-      margin-top: 25px;
+      margin-top: 30px;
       border: 1px solid #242424;
-      border-radius: 10px;
+      border-radius: 12px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       overflow: hidden;
@@ -338,10 +403,10 @@
     }
 
     .summary div {
-      padding: 15px;
+      padding: 18px;
       text-align: center;
       border-right: 1px solid #242424;
-      font-size: 15px;
+      font-size: 18px;
     }
 
     .summary div:last-child {
@@ -350,67 +415,47 @@
 
     .red-btn {
       display: block;
-      margin: 20px 0 0 auto;
+      margin: 25px 0 0 auto;
       background: linear-gradient(135deg, #b00000, #e53935);
       color: white;
       border: none;
-      padding: 16px 34px;
-      border-radius: 10px;
-      font-size: 18px;
+      padding: 18px 45px;
+      border-radius: 12px;
+      font-size: 22px;
       font-weight: 900;
       cursor: pointer;
-      transition: .3s;
-    }
-
-    .red-btn:hover {
-      transform: scale(1.04);
-      box-shadow: 0 0 20px rgba(255,36,36,.35);
     }
 
     .podium-scene {
       background:
-        radial-gradient(circle at center, rgba(255,160,30,.12), transparent 45%),
+        radial-gradient(circle at center, rgba(255,160,30,.14), transparent 45%),
         #050505;
-      min-height: 500px;
-      padding: 30px 20px;
+      min-height: 700px;
+      padding: 40px;
       position: relative;
       overflow: hidden;
     }
 
-    .podium-scene::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image: radial-gradient(circle, rgba(255,150,0,.8) 1px, transparent 2px);
-      background-size: 55px 55px;
-      opacity: .12;
-      animation: sparks 6s linear infinite;
-    }
-
-    @keyframes sparks {
-      from { transform: translateY(0); }
-      to { transform: translateY(50px); }
-    }
-
     .podium-title {
       text-align: center;
-      font-size: 24px;
-      margin-bottom: 30px;
+      font-size: 36px;
+      margin-bottom: 40px;
       position: relative;
       z-index: 2;
+      text-transform: uppercase;
     }
 
     .podium {
       display: flex;
       align-items: flex-end;
       justify-content: center;
-      gap: 14px;
+      gap: 25px;
       position: relative;
       z-index: 2;
     }
 
     .winner-card {
-      width: 31%;
+      width: 28%;
       text-align: center;
       animation: riseUp .7s ease;
     }
@@ -420,42 +465,60 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .winner-person {
-      height: 180px;
-      background-size: cover;
-      background-position: center top;
-      margin-bottom: -8px;
-      filter: drop-shadow(0 15px 15px rgba(0,0,0,.8));
+    .winner-card .fighter {
+      height: 310px;
+    }
+
+    .winner-card .head {
+      width: 90px;
+      height: 100px;
+    }
+
+    .winner-card .hair {
+      width: 92px;
+      height: 38px;
+    }
+
+    .winner-card .body {
+      width: 190px;
+      height: 190px;
+    }
+
+    .winner-card .belt {
+      width: 175px;
+      height: 18px;
+      bottom: 45px;
     }
 
     .winner-name {
-      background: rgba(0,0,0,.75);
+      background: rgba(0,0,0,.8);
       display: inline-block;
-      padding: 6px 14px;
+      padding: 8px 18px;
       border-radius: 8px;
-      margin-bottom: -10px;
+      margin-bottom: -8px;
       position: relative;
-      z-index: 5;
-      font-size: 14px;
+      z-index: 8;
+      font-size: 20px;
+      font-weight: bold;
     }
 
     .podium-block {
-      height: 95px;
-      border-radius: 12px 12px 0 0;
+      height: 140px;
+      border-radius: 14px 14px 0 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 48px;
+      font-size: 65px;
       font-weight: 900;
       text-shadow: 0 3px 8px black;
     }
 
-    .first-place .winner-person {
-      height: 220px;
+    .first-place .fighter {
+      height: 360px;
     }
 
     .first-place .podium-block {
-      height: 125px;
+      height: 190px;
       background: linear-gradient(135deg, #8a5300, #d89b22);
     }
 
@@ -469,60 +532,67 @@
 
     .green-btn {
       display: block;
-      width: 85%;
-      margin: 25px auto 15px;
+      width: 70%;
+      margin: 35px auto 18px;
       background: linear-gradient(135deg, #006b25, #009b3a);
       color: white;
       border: none;
-      padding: 18px;
-      border-radius: 10px;
-      font-size: 24px;
+      padding: 22px;
+      border-radius: 12px;
+      font-size: 32px;
       font-weight: 900;
       cursor: pointer;
       position: relative;
       z-index: 2;
-      transition: .3s;
-    }
-
-    .green-btn:hover {
-      transform: scale(1.03);
-      box-shadow: 0 0 20px rgba(0,200,83,.35);
     }
 
     .success {
-      width: 85%;
+      width: 70%;
       margin: 0 auto;
       background: rgba(0,120,45,.18);
       border: 1px solid #006b25;
       border-radius: 10px;
-      padding: 15px;
+      padding: 18px;
       text-align: center;
       position: relative;
       z-index: 2;
       display: none;
+      font-size: 18px;
     }
 
     .back {
       background: transparent;
       border: 1px solid #333;
       color: white;
-      padding: 9px 14px;
+      padding: 10px 16px;
       border-radius: 8px;
       margin-bottom: 20px;
       cursor: pointer;
     }
 
-    @media(max-width: 600px) {
-      .screen { padding: 12px; }
-      .phone { max-width: 100%; }
-      .hero { height: 235px; }
-      .hero h1 { font-size: 36px; }
-      .sport-grid { gap: 8px; }
-      .sport-card p { font-size: 11px; }
-      .winner-person { height: 135px; }
-      .first-place .winner-person { height: 165px; }
-      .podium-block { height: 75px; font-size: 38px; }
-      .first-place .podium-block { height: 100px; }
+    @media(max-width: 700px) {
+      header { padding: 0 22px; }
+      .screen { padding: 14px; }
+      .content { padding: 25px 18px; }
+      .container { max-width: 100%; }
+      .hero { height: 300px; }
+      .hero h1 { font-size: 44px; }
+      h2 { font-size: 30px; }
+      .sport-grid { grid-template-columns: repeat(2, 1fr); }
+      .category-grid { grid-template-columns: repeat(2, 1fr); }
+      .athlete-grid { grid-template-columns: repeat(2, 1fr); }
+      .podium-scene { padding: 20px 8px; min-height: 560px; }
+      .podium { gap: 8px; }
+      .winner-card { width: 33%; }
+      .winner-card .fighter { height: 190px; }
+      .first-place .fighter { height: 220px; }
+      .winner-card .head { width: 60px; height: 70px; }
+      .winner-card .hair { width: 62px; height: 26px; }
+      .winner-card .body { width: 100px; height: 105px; }
+      .winner-card .belt { width: 95px; height: 12px; bottom: 25px; }
+      .podium-block { height: 85px; font-size: 40px; }
+      .first-place .podium-block { height: 115px; }
+      .green-btn, .success { width: 95%; }
     }
   </style>
 </head>
@@ -535,8 +605,8 @@
   </header>
 
   <section id="home" class="screen active">
-    <div class="phone">
-      <div class="phone-header">
+    <div class="container">
+      <div class="topbar">
         <div class="mini-logo">LUTA<span>BET</span></div>
         <div class="mini-login">Login/Cadastro</div>
       </div>
@@ -553,17 +623,14 @@
             <div class="sport-icon">🥋</div>
             <p>Judô</p>
           </div>
-
           <div class="sport-card" onclick="selectSport('MMA')">
             <div class="sport-icon">🥊</div>
             <p>MMA</p>
           </div>
-
           <div class="sport-card" onclick="selectSport('Jiu-Jitsu')">
             <div class="sport-icon">🤼</div>
             <p>Jiu-Jitsu</p>
           </div>
-
           <div class="sport-card" onclick="selectSport('Capoeira')">
             <div class="sport-icon">🔥</div>
             <p>Capoeira</p>
@@ -574,32 +641,27 @@
   </section>
 
   <section id="tipo" class="screen">
-    <div class="phone">
-      <div class="phone-header">
+    <div class="container">
+      <div class="topbar">
         <div class="mini-logo">LUTA<span>BET</span></div>
         <div class="mini-login">Login/Cadastro</div>
       </div>
 
       <div class="content">
         <button class="back" onclick="showScreen('home')">← Voltar</button>
-        <h2>Judô</h2>
+        <h2>Escolha o tipo</h2>
 
         <div class="option-list">
-          <div class="option" onclick="selectLevel('Estadual')">
-            Judô Estadual <span>›</span>
-          </div>
-
-          <div class="option" onclick="selectLevel('Nacional')">
-            Judô Nacional <span>›</span>
-          </div>
+          <div class="option" onclick="selectLevel('Estadual')">Judô Estadual <span>›</span></div>
+          <div class="option" onclick="selectLevel('Nacional')">Judô Nacional <span>›</span></div>
         </div>
       </div>
     </div>
   </section>
 
   <section id="eventos" class="screen">
-    <div class="phone">
-      <div class="phone-header">
+    <div class="container">
+      <div class="topbar">
         <div class="mini-logo">LUTA<span>BET</span></div>
         <div class="mini-login">Login/Cadastro</div>
       </div>
@@ -609,33 +671,19 @@
         <h2 id="eventTitle">Judô Estadual</h2>
 
         <div class="option-list">
-          <div class="option event-option" onclick="selectEvent('Copa São Paulo de Judô')">
-            <span><b class="event-number">5</b>Copa São Paulo de Judô</span><span>›</span>
-          </div>
-
-          <div class="option event-option" onclick="selectEvent('Torneio Taça Bahia')">
-            <span><b class="event-number">14</b>Torneio Taça Bahia</span><span>›</span>
-          </div>
-
-          <div class="option event-option" onclick="selectEvent('Open Pernambucano de Judô')">
-            <span><b class="event-number">20</b>Open Pernambucano de Judô</span><span>›</span>
-          </div>
-
-          <div class="option event-option" onclick="selectEvent('Campeonato Mineiro')">
-            <span><b class="event-number">1</b>Campeonato Mineiro</span><span>›</span>
-          </div>
-
-          <div class="option event-option" onclick="selectEvent('Open Judô Amazonas')">
-            <span><b class="event-number">19</b>Open Judô Amazonas</span><span>›</span>
-          </div>
+          <div class="option event-option" onclick="selectEvent('Copa São Paulo de Judô')"><span><b class="event-number">5</b>Copa São Paulo de Judô</span><span>›</span></div>
+          <div class="option event-option" onclick="selectEvent('Torneio Taça Bahia')"><span><b class="event-number">14</b>Torneio Taça Bahia</span><span>›</span></div>
+          <div class="option event-option" onclick="selectEvent('Open Pernambucano de Judô')"><span><b class="event-number">20</b>Open Pernambucano de Judô</span><span>›</span></div>
+          <div class="option event-option" onclick="selectEvent('Campeonato Mineiro')"><span><b class="event-number">1</b>Campeonato Mineiro</span><span>›</span></div>
+          <div class="option event-option" onclick="selectEvent('Open Judô Amazonas')"><span><b class="event-number">19</b>Open Judô Amazonas</span><span>›</span></div>
         </div>
       </div>
     </div>
   </section>
 
   <section id="categorias" class="screen">
-    <div class="phone">
-      <div class="phone-header">
+    <div class="container">
+      <div class="topbar">
         <div class="mini-logo">LUTA<span>BET</span></div>
         <div class="mini-login">Login/Cadastro</div>
       </div>
@@ -662,8 +710,8 @@
   </section>
 
   <section id="atletas" class="screen">
-    <div class="phone">
-      <div class="phone-header">
+    <div class="container">
+      <div class="topbar">
         <div class="mini-logo">LUTA<span>BET</span></div>
         <div class="mini-login">Login/Cadastro</div>
       </div>
@@ -690,8 +738,8 @@
   </section>
 
   <section id="podio" class="screen">
-    <div class="phone">
-      <div class="phone-header">
+    <div class="container">
+      <div class="topbar">
         <div class="mini-logo">LUTA<span>BET</span></div>
         <div class="mini-login">Login/Cadastro</div>
       </div>
@@ -699,26 +747,24 @@
       <div class="podium-scene">
         <button class="back" onclick="showScreen('atletas')">← Voltar</button>
 
-        <div class="podium-title">
-          Confirme sua aposta
-        </div>
+        <div class="podium-title">Confirme sua aposta</div>
 
         <div class="podium">
           <div class="winner-card second-place">
             <div class="winner-name" id="name2">2º</div>
-            <div class="winner-person" id="person2"></div>
+            <div id="person2"></div>
             <div class="podium-block">2</div>
           </div>
 
           <div class="winner-card first-place">
             <div class="winner-name" id="name1">1º</div>
-            <div class="winner-person" id="person1"></div>
+            <div id="person1"></div>
             <div class="podium-block">1</div>
           </div>
 
           <div class="winner-card third-place">
             <div class="winner-name" id="name3">3º</div>
-            <div class="winner-person" id="person3"></div>
+            <div id="person3"></div>
             <div class="podium-block">3</div>
           </div>
         </div>
@@ -738,68 +784,48 @@
     let category = "";
     let currentPlace = 1;
 
-    let podium = {
-      1: null,
-      2: null,
-      3: null
-    };
+    let podium = { 1: null, 2: null, 3: null };
 
     const athletes = [
-      {
-        name: "Pereira",
-        img: "https://images.unsplash.com/photo-1555597673-b21d5c935865?q=80&w=500&auto=format&fit=crop"
-      },
-      {
-        name: "Costa",
-        img: "https://images.unsplash.com/photo-1567013127542-490d757e6349?q=80&w=500&auto=format&fit=crop"
-      },
-      {
-        name: "Silva",
-        img: "https://images.unsplash.com/photo-1599058917212-d750089bc07e?q=80&w=500&auto=format&fit=crop"
-      },
-      {
-        name: "Rossi",
-        img: "https://images.unsplash.com/photo-1571019613914-85f342c6a11e?q=80&w=500&auto=format&fit=crop"
-      },
-      {
-        name: "Oliveira",
-        img: "https://images.unsplash.com/photo-1605296867304-46d5465a13f1?q=80&w=500&auto=format&fit=crop"
-      },
-      {
-        name: "Sousa",
-        img: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=500&auto=format&fit=crop"
-      },
-      {
-        name: "Tanaka",
-        img: "https://images.unsplash.com/photo-1549476464-37392f717541?q=80&w=500&auto=format&fit=crop"
-      },
-      {
-        name: "Martins",
-        img: "https://images.unsplash.com/photo-1606889464198-fcb18894cf50?q=80&w=500&auto=format&fit=crop"
-      },
-      {
-        name: "Moretti",
-        img: "https://images.unsplash.com/photo-1594381898411-846e7d193883?q=80&w=500&auto=format&fit=crop"
-      }
+      { name: "Pereira", skin: "#c98b5a" },
+      { name: "Costa", skin: "#b57948" },
+      { name: "Silva", skin: "#d09a6b" },
+      { name: "Rossi", skin: "#c68655" },
+      { name: "Oliveira", skin: "#b87345" },
+      { name: "Sousa", skin: "#9f633b" },
+      { name: "Tanaka", skin: "#d1a06f" },
+      { name: "Martins", skin: "#b98252" },
+      { name: "Moretti", skin: "#c78b5d" },
+      { name: "Almeida", skin: "#a66a43" }
     ];
 
-    function showScreen(id) {
-      document.querySelectorAll(".screen").forEach(screen => {
-        screen.classList.remove("active");
-      });
+    function athleteHTML(athlete) {
+      return `
+        <div class="fighter">
+          <div class="hair"></div>
+          <div class="head" style="background:${athlete.skin}">
+            <div class="eye left"></div>
+            <div class="eye right"></div>
+            <div class="nose"></div>
+          </div>
+          <div class="body"></div>
+          <div class="belt"></div>
+        </div>
+      `;
+    }
 
+    function showScreen(id) {
+      document.querySelectorAll(".screen").forEach(screen => screen.classList.remove("active"));
       document.getElementById(id).classList.add("active");
-      window.scrollTo(0,0);
+      window.scrollTo(0, 0);
     }
 
     function selectSport(value) {
       sport = value;
-
       if (sport !== "Judô") {
         alert("Demonstração disponível para Judô.");
         sport = "Judô";
       }
-
       showScreen("tipo");
     }
 
@@ -817,23 +843,14 @@
 
     function selectGender(value, element) {
       gender = value;
-
-      document.querySelectorAll(".tab").forEach(tab => {
-        tab.classList.remove("selected");
-      });
-
+      document.querySelectorAll(".tab").forEach(tab => tab.classList.remove("selected"));
       element.classList.add("selected");
     }
 
     function selectCategory(value) {
       category = value;
       currentPlace = 1;
-      podium = {
-        1: null,
-        2: null,
-        3: null
-      };
-
+      podium = { 1: null, 2: null, 3: null };
       renderAthletes();
       updateSummary();
       showScreen("atletas");
@@ -848,7 +865,7 @@
 
         grid.innerHTML += `
           <div class="athlete ${isSelected ? "selected" : ""}" onclick="selectAthlete('${athlete.name}')">
-            <div class="athlete-img" style="background-image:url('${athlete.img}')"></div>
+            ${athleteHTML(athlete)}
             <div class="athlete-name">${athlete.name}</div>
           </div>
         `;
@@ -862,7 +879,6 @@
 
     function selectAthlete(name) {
       const athlete = athletes.find(item => item.name === name);
-
       const alreadySelected = Object.values(podium).some(item => item && item.name === name);
 
       if (alreadySelected) {
@@ -895,9 +911,9 @@
       document.getElementById("name2").innerText = podium[2].name;
       document.getElementById("name3").innerText = podium[3].name;
 
-      document.getElementById("person1").style.backgroundImage = `url('${podium[1].img}')`;
-      document.getElementById("person2").style.backgroundImage = `url('${podium[2].img}')`;
-      document.getElementById("person3").style.backgroundImage = `url('${podium[3].img}')`;
+      document.getElementById("person1").innerHTML = athleteHTML(podium[1]);
+      document.getElementById("person2").innerHTML = athleteHTML(podium[2]);
+      document.getElementById("person3").innerHTML = athleteHTML(podium[3]);
 
       document.getElementById("successBox").style.display = "none";
       showScreen("podio");
@@ -905,7 +921,6 @@
 
     function confirmBet() {
       const box = document.getElementById("successBox");
-
       box.style.display = "block";
       box.innerHTML =
         "✅ Aposta registrada com sucesso!<br><br>" +
