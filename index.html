@@ -123,6 +123,68 @@
       color: #ff2424;
     }
 
+    .athlete-carousel {
+      width: 100%;
+      background: #080808;
+      border-top: 1px solid #1b1b1b;
+      border-bottom: 1px solid #1b1b1b;
+      overflow: hidden;
+      padding: 18px 0;
+    }
+
+    .carousel-track {
+      display: flex;
+      gap: 24px;
+      width: max-content;
+      animation: slideCarousel 28s linear infinite;
+    }
+
+    .carousel-track:hover {
+      animation-play-state: paused;
+    }
+
+    .carousel-athlete {
+      width: 150px;
+      min-width: 150px;
+      background: linear-gradient(135deg, #111, #080808);
+      border: 1px solid #252525;
+      border-radius: 16px;
+      padding: 14px;
+      text-align: center;
+      box-shadow: 0 0 18px rgba(0,0,0,.45);
+    }
+
+    .carousel-athlete img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #00e060;
+      margin-bottom: 10px;
+    }
+
+    .carousel-athlete p {
+      font-size: 17px;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+
+    .carousel-athlete span {
+      color: #00e060;
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    @keyframes slideCarousel {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
     .content {
       padding: 45px;
     }
@@ -672,6 +734,10 @@
   <h1>Apostas<br><span>em Lutas</span></h1>
 </div>
 
+<div class="athlete-carousel">
+  <div class="carousel-track" id="carouselTrack"></div>
+</div>
+
 <div class="content">
   <h2>Escolha a modalidade</h2>
 
@@ -931,6 +997,27 @@
     }
   ];
 
+  function renderCarousel() {
+    const track = document.getElementById("carouselTrack");
+
+    if (!track) {
+      return;
+    }
+
+    const duplicatedAthletes = [...athletes, ...athletes];
+    track.innerHTML = "";
+
+    duplicatedAthletes.forEach(athlete => {
+      track.innerHTML += `
+        <div class="carousel-athlete">
+          <img src="${athlete.photo}" alt="${athlete.name}">
+          <p>${athlete.name}</p>
+          <span>Odd ${athlete.odd.toFixed(2)}</span>
+        </div>
+      `;
+    });
+  }
+
   function showScreen(id) {
     document.querySelectorAll(".screen").forEach(screen => screen.classList.remove("active"));
     document.getElementById(id).classList.add("active");
@@ -1174,5 +1261,7 @@
       "<b>Possível ganho se acertar tudo:</b> " + formatMoney(returnValue) + "<br><br>" +
       "<b>Sua aposta:</b><br>" + podiumText;
   }
+
+  renderCarousel();
 </script></body>
 </html>
