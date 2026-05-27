@@ -946,11 +946,17 @@
   }
 
   function getTotalOdd() {
-    if (!podium[1] || !podium[2] || !podium[3]) {
+    const selectedAthletes = Object.values(podium).filter(item => item !== null);
+
+    if (selectedAthletes.length === 0) {
       return 0;
     }
 
-    return podium[1].odd * podium[2].odd * podium[3].odd;
+    return selectedAthletes.reduce((total, athlete) => total * athlete.odd, 1);
+  }
+
+  function getSelectedAthletes() {
+    return Object.values(podium).filter(item => item !== null);
   }
 
   function selectSport(value) {
@@ -1030,10 +1036,12 @@
       `;
     });
 
+    const selectedCount = Object.values(podium).filter(item => item !== null).length;
+
     document.getElementById("chooseText").innerHTML =
-      currentPlace <= 3
-      ? `Escolha ou remova o atleta do <span class="green">${currentPlace}º lugar</span>`
-      : `<span class="green">Pódio completo!</span> Clique em um atleta para remover`;
+      selectedCount < 3
+      ? `Escolha de <span class="green">1 a 3 atletas</span> para apostar`
+      : `<span class="green">Você escolheu 3 atletas!</span> Clique em um atleta para remover`;
   }
 
   function selectAthlete(name) {
@@ -1086,9 +1094,10 @@
 
   function goPodium() {
     const betValue = getBetValue();
+    const selectedAthletes = getSelectedAthletes();
 
-    if (!podium[1] || !podium[2] || !podium[3]) {
-      alert("Escolha 1º, 2º e 3º lugar antes de continuar.");
+    if (selectedAthletes.length === 0) {
+      alert("Escolha pelo menos 1 atleta antes de continuar.");
       return;
     }
 
@@ -1100,19 +1109,20 @@
     const totalOdd = getTotalOdd();
     const returnValue = betValue * totalOdd;
 
-    document.getElementById("name1").innerText = podium[1].name;
-    document.getElementById("name2").innerText = podium[2].name;
-    document.getElementById("name3").innerText = podium[3].name;
+    document.getElementById("name1").innerText = podium[1] ? podium[1].name : "---";
+    document.getElementById("name2").innerText = podium[2] ? podium[2].name : "---";
+    document.getElementById("name3").innerText = podium[3] ? podium[3].name : "---";
 
-    document.getElementById("odd1").innerText = "Odd " + podium[1].odd.toFixed(2);
-    document.getElementById("odd2").innerText = "Odd " + podium[2].odd.toFixed(2);
-    document.getElementById("odd3").innerText = "Odd " + podium[3].odd.toFixed(2);
+    document.getElementById("odd1").innerText = podium[1] ? "Odd " + podium[1].odd.toFixed(2) : "Sem aposta";
+    document.getElementById("odd2").innerText = podium[2] ? "Odd " + podium[2].odd.toFixed(2) : "Sem aposta";
+    document.getElementById("odd3").innerText = podium[3] ? "Odd " + podium[3].odd.toFixed(2) : "Sem aposta";
 
-    document.getElementById("person1").innerHTML = standingAthleteHTML(podium[1]);
-    document.getElementById("person2").innerHTML = standingAthleteHTML(podium[2]);
-    document.getElementById("person3").innerHTML = standingAthleteHTML(podium[3]);
+    document.getElementById("person1").innerHTML = podium[1] ? standingAthleteHTML(podium[1]) : "";
+    document.getElementById("person2").innerHTML = podium[2] ? standingAthleteHTML(podium[2]) : "";
+    document.getElementById("person3").innerHTML = podium[3] ? standingAthleteHTML(podium[3]) : "";
 
     document.getElementById("podiumBetInfo").innerHTML =
+      "Quantidade de atletas apostados: " + selectedAthletes.length + "<br>" +
       "Valor apostado: " + formatMoney(betValue) + "<br>" +
       "Odd total: " + totalOdd.toFixed(2) + "<br>" +
       "Possível ganho: " + formatMoney(returnValue);
@@ -1126,6 +1136,12 @@
     const betValue = getBetValue();
     const totalOdd = getTotalOdd();
     const returnValue = betValue * totalOdd;
+    const selectedAthletes = getSelectedAthletes();
+
+    if (selectedAthletes.length === 0) {
+      alert("Escolha pelo menos 1 atleta antes de apostar.");
+      return;
+    }
 
     if (!betValue || betValue <= 0) {
       alert("Digite o valor da aposta antes de apostar.");
@@ -1134,17 +1150,29 @@
 
     box.style.display = "block";
 
+    let podiumText = "";
+
+    if (podium[1]) {
+      podiumText += "1º " + podium[1].name + " — Odd " + podium[1].odd.toFixed(2) + "<br>";
+    }
+
+    if (podium[2]) {
+      podiumText += "2º " + podium[2].name + " — Odd " + podium[2].odd.toFixed(2) + "<br>";
+    }
+
+    if (podium[3]) {
+      podiumText += "3º " + podium[3].name + " — Odd " + podium[3].odd.toFixed(2) + "<br>";
+    }
+
     box.innerHTML =
       "✅ Aposta registrada com sucesso!<br><br>" +
       "<b>Evento:</b> " + eventName + "<br>" +
       "<b>Categoria:</b> " + gender + " | " + category + "<br><br>" +
+      "<b>Quantidade de atletas apostados:</b> " + selectedAthletes.length + "<br>" +
       "<b>Valor apostado:</b> " + formatMoney(betValue) + "<br>" +
       "<b>Odd total:</b> " + totalOdd.toFixed(2) + "<br>" +
       "<b>Possível ganho se acertar tudo:</b> " + formatMoney(returnValue) + "<br><br>" +
-      "<b>Seu pódio:</b><br>" +
-      "1º " + podium[1].name + " — Odd " + podium[1].odd.toFixed(2) + "<br>" +
-      "2º " + podium[2].name + " — Odd " + podium[2].odd.toFixed(2) + "<br>" +
-      "3º " + podium[3].name + " — Odd " + podium[3].odd.toFixed(2);
+      "<b>Sua aposta:</b><br>" + podiumText;
   }
 </script></body>
 </html>
