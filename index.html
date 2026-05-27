@@ -706,14 +706,10 @@
       }
     }
   </style></head><body><header>
-  <div class="logo">LUTA<span>BET</span></div>
+  <div class="logo" onclick="goHome()" style="cursor:pointer;">LUTA<span>BET</span></div>
   <div class="login">Login/Cadastro</div>
 </header><section id="home" class="screen active">
-  <div class="container">
-    <div class="topbar">
-      <div class="mini-logo">LUTA<span>BET</span></div>
-      <div class="mini-login">Login/Cadastro</div>
-    </div><div class="hero">
+  <div class="container"><div class="hero">
   <div class="hero-bg active"></div>
   <div class="hero-bg"></div>
   <h1>Apostas<br><span>em Lutas</span></h1>
@@ -747,11 +743,7 @@
 
   </div>
 </section><section id="tipo" class="screen">
-  <div class="container">
-    <div class="topbar">
-      <div class="mini-logo">LUTA<span>BET</span></div>
-      <div class="mini-login">Login/Cadastro</div>
-    </div><div class="content">
+  <div class="container"><div class="content">
   <button class="back" onclick="showScreen('home')">← Voltar</button>
   <h2>Escolha o tipo</h2>
 
@@ -763,11 +755,7 @@
 
   </div>
 </section><section id="eventos" class="screen">
-  <div class="container">
-    <div class="topbar">
-      <div class="mini-logo">LUTA<span>BET</span></div>
-      <div class="mini-login">Login/Cadastro</div>
-    </div><div class="content">
+  <div class="container"><div class="content">
   <button class="back" onclick="showScreen('tipo')">← Voltar</button>
   <h2 id="eventTitle">Judô Estadual</h2>
 
@@ -801,11 +789,7 @@
 
   </div>
 </section><section id="categorias" class="screen">
-  <div class="container">
-    <div class="topbar">
-      <div class="mini-logo">LUTA<span>BET</span></div>
-      <div class="mini-login">Login/Cadastro</div>
-    </div><div class="content">
+  <div class="container"><div class="content">
   <button class="back" onclick="showScreen('eventos')">← Voltar</button>
   <h2 id="categoryTitle">Evento</h2>
 
@@ -826,11 +810,7 @@
 
   </div>
 </section><section id="atletas" class="screen">
-  <div class="container">
-    <div class="topbar">
-      <div class="mini-logo">LUTA<span>BET</span></div>
-      <div class="mini-login">Login/Cadastro</div>
-    </div><div class="content">
+  <div class="container"><div class="content">
   <button class="back" onclick="showScreen('categorias')">← Voltar</button>
 
   <h2>Selecione o pódio</h2>
@@ -857,11 +837,7 @@
 
   </div>
 </section><section id="podio" class="screen">
-  <div class="container">
-    <div class="topbar">
-      <div class="mini-logo">LUTA<span>BET</span></div>
-      <div class="mini-login">Login/Cadastro</div>
-    </div><div class="podium-scene">
+  <div class="container"><div class="podium-scene">
   <button class="back" onclick="showScreen('atletas')">← Voltar</button>
 
   <div class="podium-title">Confirme sua aposta</div>
@@ -1007,6 +983,10 @@
       activeBg.classList.remove("active");
       nextBg.classList.add("active");
     }, 3500);
+  }
+
+  function goHome() {
+    showScreen("home");
   }
 
   function showScreen(id) {
