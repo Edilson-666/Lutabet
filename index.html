@@ -1,56 +1,103 @@
-Sim — aqui está o código completo corrigido, já permitindo selecionar e deselecionar atletas:
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LutaBet</title>
 
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
 
-    body { background: #030303; color: white; overflow-x: hidden; }
+    body {
+      background: #030303;
+      color: white;
+      overflow-x: hidden;
+    }
 
     header {
-      height: 80px; background: #050505; display: flex; align-items: center;
-      justify-content: space-between; padding: 0 60px; border-bottom: 1px solid #181818;
-      position: sticky; top: 0; z-index: 100;
+      height: 80px;
+      background: #050505;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 60px;
+      border-bottom: 1px solid #181818;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
-    .logo { font-size: 36px; font-weight: 900; font-style: italic; }
-    .logo span { color: #ff2424; }
+    .logo {
+      font-size: 36px;
+      font-weight: 900;
+      font-style: italic;
+    }
+
+    .logo span {
+      color: #ff2424;
+    }
 
     .login {
-      background: #141414; padding: 14px 24px; border-radius: 10px;
-      font-size: 16px; font-weight: bold; border: 1px solid #202020;
+      background: #141414;
+      padding: 14px 24px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      border: 1px solid #202020;
     }
 
-    .screen { display: none; min-height: calc(100vh - 80px); padding: 40px; animation: fade .45s ease; }
-    .active { display: block; }
+    .screen {
+      display: none;
+      min-height: calc(100vh - 80px);
+      padding: 40px;
+    }
 
-    @keyframes fade {
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(0); }
+    .screen.active {
+      display: block;
     }
 
     .container {
-      width: 100%; max-width: 1200px; margin: auto; border: 1px solid #242424;
-      border-radius: 18px; background: #050505; overflow: hidden;
+      width: 100%;
+      max-width: 1200px;
+      margin: auto;
+      border: 1px solid #242424;
+      border-radius: 18px;
+      background: #050505;
+      overflow: hidden;
       box-shadow: 0 0 40px rgba(0,0,0,.8);
     }
 
     .topbar {
-      height: 65px; padding: 0 28px; display: flex; align-items: center;
-      justify-content: space-between; background: #080808; border-bottom: 1px solid #1b1b1b;
+      height: 65px;
+      padding: 0 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #080808;
+      border-bottom: 1px solid #1b1b1b;
     }
 
-    .mini-logo { font-size: 28px; font-weight: 900; font-style: italic; }
-    .mini-logo span { color: #ff2424; }
+    .mini-logo {
+      font-size: 28px;
+      font-weight: 900;
+      font-style: italic;
+    }
+
+    .mini-logo span {
+      color: #ff2424;
+    }
 
     .mini-login {
-      background: #151515; padding: 10px 18px; border-radius: 8px;
-      font-size: 14px; border: 1px solid #222;
+      background: #151515;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 14px;
+      border: 1px solid #222;
     }
 
     .hero {
@@ -58,273 +105,448 @@ Sim — aqui está o código completo corrigido, já permitindo selecionar e des
       background:
         linear-gradient(to bottom, rgba(0,0,0,.2), rgba(0,0,0,.9)),
         url("https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?q=80&w=1800&auto=format&fit=crop");
-      background-size: cover; background-position: center; display: flex;
-      align-items: flex-end; justify-content: center; text-align: center;
-      padding-bottom: 70px; animation: zoom 7s infinite alternate ease-in-out;
-    }
-
-    @keyframes zoom {
-      from { background-size: 100%; }
-      to { background-size: 112%; }
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      text-align: center;
+      padding-bottom: 70px;
     }
 
     .hero h1 {
-      font-size: 80px; line-height: .9; font-weight: 900;
-      text-transform: uppercase; text-shadow: 0 5px 20px black;
+      font-size: 80px;
+      line-height: .9;
+      font-weight: 900;
+      text-transform: uppercase;
+      text-shadow: 0 5px 20px black;
     }
 
-    .hero h1 span { color: #ff2424; }
+    .hero h1 span {
+      color: #ff2424;
+    }
 
-    .content { padding: 45px; }
+    .content {
+      padding: 45px;
+    }
 
     h2 {
-      text-align: center; font-size: 42px; margin-bottom: 35px;
+      text-align: center;
+      font-size: 42px;
+      margin-bottom: 35px;
       text-transform: uppercase;
     }
 
     .sport-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
     }
 
-    .sport-card, .category, .option {
+    .sport-card,
+    .category,
+    .option {
       background: linear-gradient(135deg, #111, #080808);
-      border: 1px solid #252525; border-radius: 14px; cursor: pointer; transition: .3s;
+      border: 1px solid #252525;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: .3s;
     }
 
-    .sport-card { padding: 28px 10px; text-align: center; }
+    .sport-card {
+      padding: 28px 10px;
+      text-align: center;
+    }
 
-    .sport-card:hover, .category:hover, .option:hover {
-      border-color: #ff2424; transform: translateY(-5px);
+    .sport-card:hover,
+    .category:hover,
+    .option:hover {
+      border-color: #ff2424;
+      transform: translateY(-5px);
       box-shadow: 0 0 25px rgba(255,36,36,.25);
     }
 
-    .sport-icon { font-size: 52px; margin-bottom: 12px; }
-    .sport-card p { font-size: 20px; font-weight: bold; }
+    .sport-icon {
+      font-size: 52px;
+      margin-bottom: 12px;
+    }
+
+    .sport-card p {
+      font-size: 20px;
+      font-weight: bold;
+    }
 
     .option-list {
-      display: flex; flex-direction: column; gap: 18px;
-      max-width: 850px; margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      max-width: 850px;
+      margin: auto;
     }
 
     .option {
-      padding: 28px; font-size: 28px; display: flex;
-      justify-content: space-between; align-items: center;
+      padding: 28px;
+      font-size: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    .event-option { font-size: 23px; }
-    .event-number { color: #ccc; margin-right: 25px; }
+    .event-option {
+      font-size: 23px;
+    }
+
+    .event-number {
+      color: #ccc;
+      margin-right: 25px;
+    }
 
     .tabs {
-      max-width: 700px; margin: 0 auto 35px; display: grid;
-      grid-template-columns: 1fr 1fr; border: 1px solid #242424;
-      border-radius: 12px; overflow: hidden;
+      max-width: 700px;
+      margin: 0 auto 35px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid #242424;
+      border-radius: 12px;
+      overflow: hidden;
     }
 
     .tab {
-      padding: 20px; text-align: center; background: #090909;
-      cursor: pointer; font-weight: bold; font-size: 22px;
+      padding: 20px;
+      text-align: center;
+      background: #090909;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 22px;
     }
 
-    .tab.selected { background: #8b0000; border: 1px solid #ff2424; }
+    .tab.selected {
+      background: #8b0000;
+      border: 1px solid #ff2424;
+    }
 
     .category-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 22px; max-width: 850px; margin: auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      max-width: 850px;
+      margin: auto;
     }
 
     .category {
-      padding: 30px 10px; text-align: center; font-size: 24px; font-weight: bold;
+      padding: 30px 10px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
     }
 
-    .choose-text { text-align: center; font-size: 25px; margin-bottom: 30px; }
+    .choose-text {
+      text-align: center;
+      font-size: 25px;
+      margin-bottom: 30px;
+    }
 
-    .green { color: #00e060; font-weight: 900; }
+    .green {
+      color: #00e060;
+      font-weight: 900;
+    }
 
     .athlete-grid {
-      display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 22px;
     }
 
     .athlete {
-      background: #0d0d0d; border: 1px solid #242424; border-radius: 14px;
-      overflow: hidden; cursor: pointer; position: relative; transition: .3s;
-      text-align: center; padding-top: 18px;
+      background: #0d0d0d;
+      border: 1px solid #242424;
+      border-radius: 18px;
+      cursor: pointer;
+      position: relative;
+      transition: .3s;
+      text-align: center;
+      padding: 20px 10px 14px;
     }
 
-    .athlete:hover { transform: translateY(-7px); border-color: #00c853; }
+    .athlete:hover {
+      transform: translateY(-7px);
+      border-color: #00e060;
+    }
 
     .athlete.selected {
-      border-color: #00c853; box-shadow: 0 0 18px rgba(0,200,83,.45);
+      border-color: #00e060;
+      box-shadow: 0 0 22px rgba(0,224,96,.45);
     }
 
     .athlete.selected::after {
-      content: "✓"; position: absolute; right: 10px; bottom: 45px;
-      background: #00c853; width: 28px; height: 28px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center; font-weight: 900;
+      content: "✓";
+      position: absolute;
+      right: 12px;
+      top: 12px;
+      background: #00c853;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
     }
 
-    .fighter {
-      height: 210px; position: relative; display: flex;
-      justify-content: center; align-items: flex-end; animation: floatFace 3s infinite ease-in-out;
+    .athlete-photo {
+      width: 125px;
+      height: 125px;
+      margin: 0 auto 12px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid #1f1f1f;
+      background: #111;
     }
 
-    @keyframes floatFace {
-      0%,100% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
+    .athlete-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
-    .head {
-      width: 68px; height: 78px; background: #c98b5a;
-      border-radius: 50% 50% 45% 45%; position: absolute; top: 8px;
-      z-index: 4; box-shadow: inset -8px -5px 0 rgba(0,0,0,.18);
-    }
-
-    .hair {
-      width: 70px; height: 32px; background: #151515;
-      border-radius: 50% 50% 20% 20%; position: absolute; top: 0; z-index: 5;
-    }
-
-    .eye {
-      width: 6px; height: 6px; background: #111;
-      border-radius: 50%; position: absolute; top: 38px;
-    }
-
-    .eye.left { left: 20px; }
-    .eye.right { right: 20px; }
-
-    .nose {
-      width: 7px; height: 13px; background: rgba(0,0,0,.18);
-      position: absolute; top: 44px; left: 30px; border-radius: 5px;
-    }
-
-    .body {
-      width: 130px; height: 125px; background: linear-gradient(135deg, #fff, #dcdcdc);
-      position: absolute; bottom: 0; border-radius: 18px 18px 4px 4px;
-      clip-path: polygon(12% 0, 42% 0, 50% 34%, 58% 0, 88% 0, 100% 100%, 0 100%);
-      border: 1px solid #ccc;
-    }
-
-    .belt {
-      width: 120px; height: 14px; background: #050505;
-      position: absolute; bottom: 30px; border-radius: 10px; z-index: 5;
+    .athlete.selected .athlete-photo {
+      border-color: #00e060;
+      box-shadow: 0 0 20px rgba(0,224,96,.8);
     }
 
     .athlete-name {
-      padding: 13px; background: #080808; font-size: 18px; font-weight: bold;
+      padding: 8px;
+      font-size: 20px;
+      font-weight: bold;
     }
 
     .summary {
-      margin-top: 30px; border: 1px solid #242424; border-radius: 12px;
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      overflow: hidden; background: #080808;
+      margin-top: 30px;
+      border: 1px solid #242424;
+      border-radius: 12px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      overflow: hidden;
+      background: #080808;
     }
 
     .summary div {
-      padding: 18px; text-align: center; border-right: 1px solid #242424; font-size: 18px;
+      padding: 18px;
+      text-align: center;
+      border-right: 1px solid #242424;
+      font-size: 18px;
     }
 
-    .summary div:last-child { border-right: none; }
+    .summary div:last-child {
+      border-right: none;
+    }
 
     .red-btn {
-      display: block; margin: 25px 0 0 auto;
+      display: block;
+      margin: 25px 0 0 auto;
       background: linear-gradient(135deg, #b00000, #e53935);
-      color: white; border: none; padding: 18px 45px;
-      border-radius: 12px; font-size: 22px; font-weight: 900; cursor: pointer;
+      color: white;
+      border: none;
+      padding: 18px 45px;
+      border-radius: 12px;
+      font-size: 22px;
+      font-weight: 900;
+      cursor: pointer;
     }
 
     .podium-scene {
-      background: radial-gradient(circle at center, rgba(255,160,30,.14), transparent 45%), #050505;
-      min-height: 700px; padding: 40px; position: relative; overflow: hidden;
+      background:
+        radial-gradient(circle at center, rgba(0,224,96,.16), transparent 45%),
+        #050505;
+      min-height: 720px;
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
     }
 
     .podium-title {
-      text-align: center; font-size: 36px; margin-bottom: 40px;
-      position: relative; z-index: 2; text-transform: uppercase;
+      text-align: center;
+      font-size: 36px;
+      margin-bottom: 40px;
+      text-transform: uppercase;
     }
 
     .podium {
-      display: flex; align-items: flex-end; justify-content: center;
-      gap: 25px; position: relative; z-index: 2;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 25px;
     }
 
     .winner-card {
-      width: 28%; text-align: center; animation: riseUp .7s ease;
+      width: 28%;
+      text-align: center;
     }
-
-    @keyframes riseUp {
-      from { opacity: 0; transform: translateY(70px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .winner-card .fighter { height: 310px; }
-    .winner-card .head { width: 90px; height: 100px; }
-    .winner-card .hair { width: 92px; height: 38px; }
-    .winner-card .body { width: 190px; height: 190px; }
-    .winner-card .belt { width: 175px; height: 18px; bottom: 45px; }
 
     .winner-name {
-      background: rgba(0,0,0,.8); display: inline-block;
-      padding: 8px 18px; border-radius: 8px; margin-bottom: -8px;
-      position: relative; z-index: 8; font-size: 20px; font-weight: bold;
+      background: rgba(0,120,45,.9);
+      display: inline-block;
+      padding: 10px 22px;
+      border-radius: 10px;
+      margin-bottom: -10px;
+      position: relative;
+      z-index: 5;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .standing-athlete {
+      height: 310px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .standing-athlete img {
+      height: 100%;
+      max-width: 100%;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: 18px 18px 0 0;
+    }
+
+    .first-place .standing-athlete {
+      height: 370px;
     }
 
     .podium-block {
-      height: 140px; border-radius: 14px 14px 0 0;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 65px; font-weight: 900; text-shadow: 0 3px 8px black;
+      height: 140px;
+      border-radius: 14px 14px 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 65px;
+      font-weight: 900;
+      text-shadow: 0 3px 8px black;
+      background: linear-gradient(135deg, #002b12, #006b25);
+      border: 1px solid #008c3a;
     }
 
-    .first-place .fighter { height: 360px; }
-
     .first-place .podium-block {
-      height: 190px; background: linear-gradient(135deg, #8a5300, #d89b22);
+      height: 190px;
+      background: linear-gradient(135deg, #003f18, #00a33f);
     }
 
     .second-place .podium-block {
-      background: linear-gradient(135deg, #555, #bdbdbd);
+      background: linear-gradient(135deg, #1b1b1b, #555);
     }
 
     .third-place .podium-block {
-      background: linear-gradient(135deg, #6b3200, #b66a22);
+      background: linear-gradient(135deg, #2b1605, #8a4a18);
     }
 
     .green-btn {
-      display: block; width: 70%; margin: 35px auto 18px;
-      background: linear-gradient(135deg, #006b25, #009b3a);
-      color: white; border: none; padding: 22px; border-radius: 12px;
-      font-size: 32px; font-weight: 900; cursor: pointer;
+      display: block;
+      width: 70%;
+      margin: 35px auto 18px;
+      background: linear-gradient(135deg, #006b25, #00d95a);
+      color: white;
+      border: none;
+      padding: 22px;
+      border-radius: 12px;
+      font-size: 32px;
+      font-weight: 900;
+      cursor: pointer;
     }
 
     .success {
-      width: 70%; margin: 0 auto; background: rgba(0,120,45,.18);
-      border: 1px solid #006b25; border-radius: 10px;
-      padding: 18px; text-align: center; display: none; font-size: 18px;
+      width: 70%;
+      margin: 0 auto;
+      background: rgba(0,120,45,.18);
+      border: 1px solid #006b25;
+      border-radius: 10px;
+      padding: 18px;
+      text-align: center;
+      display: none;
+      font-size: 18px;
     }
 
     .back {
-      background: transparent; border: 1px solid #333; color: white;
-      padding: 10px 16px; border-radius: 8px; margin-bottom: 20px; cursor: pointer;
+      background: transparent;
+      border: 1px solid #333;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      cursor: pointer;
     }
 
     @media(max-width: 700px) {
-      header { padding: 0 22px; }
-      .screen { padding: 14px; }
-      .content { padding: 25px 18px; }
-      .hero { height: 300px; }
-      .hero h1 { font-size: 44px; }
-      h2 { font-size: 30px; }
-      .sport-grid, .category-grid, .athlete-grid { grid-template-columns: repeat(2, 1fr); }
-      .podium-scene { padding: 20px 8px; min-height: 560px; }
-      .podium { gap: 8px; }
-      .winner-card { width: 33%; }
-      .winner-card .fighter { height: 190px; }
-      .first-place .fighter { height: 220px; }
-      .winner-card .head { width: 60px; height: 70px; }
-      .winner-card .hair { width: 62px; height: 26px; }
-      .winner-card .body { width: 100px; height: 105px; }
-      .winner-card .belt { width: 95px; height: 12px; bottom: 25px; }
-      .podium-block { height: 85px; font-size: 40px; }
-      .first-place .podium-block { height: 115px; }
-      .green-btn, .success { width: 95%; }
+      header {
+        padding: 0 22px;
+      }
+
+      .screen {
+        padding: 14px;
+      }
+
+      .content {
+        padding: 25px 18px;
+      }
+
+      .hero {
+        height: 300px;
+      }
+
+      .hero h1 {
+        font-size: 44px;
+      }
+
+      h2 {
+        font-size: 30px;
+      }
+
+      .sport-grid,
+      .category-grid,
+      .athlete-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .athlete-photo {
+        width: 105px;
+        height: 105px;
+      }
+
+      .podium-scene {
+        padding: 20px 8px;
+        min-height: 560px;
+      }
+
+      .podium {
+        gap: 8px;
+      }
+
+      .winner-card {
+        width: 33%;
+      }
+
+      .standing-athlete {
+        height: 190px;
+      }
+
+      .first-place .standing-athlete {
+        height: 230px;
+      }
+
+      .podium-block {
+        height: 85px;
+        font-size: 40px;
+      }
+
+      .first-place .podium-block {
+        height: 115px;
+      }
+
+      .green-btn,
+      .success {
+        width: 95%;
+      }
     }
   </style>
 </head>
@@ -351,10 +573,25 @@ Sim — aqui está o código completo corrigido, já permitindo selecionar e des
       <h2>Escolha a modalidade</h2>
 
       <div class="sport-grid">
-        <div class="sport-card" onclick="selectSport('Judô')"><div class="sport-icon">🥋</div><p>Judô</p></div>
-        <div class="sport-card" onclick="selectSport('MMA')"><div class="sport-icon">🥊</div><p>MMA</p></div>
-        <div class="sport-card" onclick="selectSport('Jiu-Jitsu')"><div class="sport-icon">🤼</div><p>Jiu-Jitsu</p></div>
-        <div class="sport-card" onclick="selectSport('Capoeira')"><div class="sport-icon">🔥</div><p>Capoeira</p></div>
+        <div class="sport-card" onclick="selectSport('Judô')">
+          <div class="sport-icon">🥋</div>
+          <p>Judô</p>
+        </div>
+
+        <div class="sport-card" onclick="selectSport('MMA')">
+          <div class="sport-icon">🥊</div>
+          <p>MMA</p>
+        </div>
+
+        <div class="sport-card" onclick="selectSport('Jiu-Jitsu')">
+          <div class="sport-icon">🤼</div>
+          <p>Jiu-Jitsu</p>
+        </div>
+
+        <div class="sport-card" onclick="selectSport('Capoeira')">
+          <div class="sport-icon">🔥</div>
+          <p>Capoeira</p>
+        </div>
       </div>
     </div>
   </div>
@@ -391,11 +628,30 @@ Sim — aqui está o código completo corrigido, já permitindo selecionar e des
       <h2 id="eventTitle">Judô Estadual</h2>
 
       <div class="option-list">
-        <div class="option event-option" onclick="selectEvent('Copa São Paulo de Judô')"><span><b class="event-number">5</b>Copa São Paulo de Judô</span><span>›</span></div>
-        <div class="option event-option" onclick="selectEvent('Torneio Taça Bahia')"><span><b class="event-number">14</b>Torneio Taça Bahia</span><span>›</span></div>
-        <div class="option event-option" onclick="selectEvent('Open Pernambucano de Judô')"><span><b class="event-number">20</b>Open Pernambucano de Judô</span><span>›</span></div>
-        <div class="option event-option" onclick="selectEvent('Campeonato Mineiro')"><span><b class="event-number">1</b>Campeonato Mineiro</span><span>›</span></div>
-        <div class="option event-option" onclick="selectEvent('Open Judô Amazonas')"><span><b class="event-number">19</b>Open Judô Amazonas</span><span>›</span></div>
+        <div class="option event-option" onclick="selectEvent('Copa São Paulo de Judô')">
+          <span><b class="event-number">5</b>Copa São Paulo de Judô</span>
+          <span>›</span>
+        </div>
+
+        <div class="option event-option" onclick="selectEvent('Torneio Taça Bahia')">
+          <span><b class="event-number">14</b>Torneio Taça Bahia</span>
+          <span>›</span>
+        </div>
+
+        <div class="option event-option" onclick="selectEvent('Open Pernambucano de Judô')">
+          <span><b class="event-number">20</b>Open Pernambucano de Judô</span>
+          <span>›</span>
+        </div>
+
+        <div class="option event-option" onclick="selectEvent('Campeonato Mineiro')">
+          <span><b class="event-number">1</b>Campeonato Mineiro</span>
+          <span>›</span>
+        </div>
+
+        <div class="option event-option" onclick="selectEvent('Open Judô Amazonas')">
+          <span><b class="event-number">19</b>Open Judô Amazonas</span>
+          <span>›</span>
+        </div>
       </div>
     </div>
   </div>
@@ -438,7 +694,8 @@ Sim — aqui está o código completo corrigido, já permitindo selecionar e des
 
     <div class="content">
       <button class="back" onclick="showScreen('categorias')">← Voltar</button>
-      <h2>Escolha o pódio</h2>
+
+      <h2>Selecione o pódio</h2>
 
       <div class="choose-text" id="chooseText"></div>
 
@@ -488,6 +745,7 @@ Sim — aqui está o código completo corrigido, já permitindo selecionar e des
       </div>
 
       <button class="green-btn" onclick="confirmBet()">Apostar</button>
+
       <div class="success" id="successBox"></div>
     </div>
   </div>
@@ -501,35 +759,64 @@ Sim — aqui está o código completo corrigido, já permitindo selecionar e des
   let category = "";
   let currentPlace = 1;
 
-  let podium = { 1: null, 2: null, 3: null };
+  let podium = {
+    1: null,
+    2: null,
+    3: null
+  };
 
   const athletes = [
-    { name: "Pereira", skin: "#c98b5a" },
-    { name: "Costa", skin: "#b57948" },
-    { name: "Silva", skin: "#d09a6b" },
-    { name: "Rossi", skin: "#c68655" },
-    { name: "Oliveira", skin: "#b87345" },
-    { name: "Sousa", skin: "#9f633b" },
-    { name: "Tanaka", skin: "#d1a06f" },
-    { name: "Martins", skin: "#b98252" },
-    { name: "Moretti", skin: "#c78b5d" },
-    { name: "Almeida", skin: "#a66a43" }
+    {
+      name: "Pereira",
+      photo: "https://randomuser.me/api/portraits/men/32.jpg",
+      standing: "https://images.unsplash.com/photo-1555597673-b21d5c935865?q=80&w=500&auto=format&fit=crop"
+    },
+    {
+      name: "Costa",
+      photo: "https://randomuser.me/api/portraits/men/45.jpg",
+      standing: "https://images.unsplash.com/photo-1602827114685-efbb2717da9f?q=80&w=500&auto=format&fit=crop"
+    },
+    {
+      name: "Silva",
+      photo: "https://randomuser.me/api/portraits/men/22.jpg",
+      standing: "https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?q=80&w=500&auto=format&fit=crop"
+    },
+    {
+      name: "Rossi",
+      photo: "https://randomuser.me/api/portraits/men/14.jpg",
+      standing: "https://images.unsplash.com/photo-1555597408-26bc8e548a46?q=80&w=500&auto=format&fit=crop"
+    },
+    {
+      name: "Oliveira",
+      photo: "https://randomuser.me/api/portraits/men/51.jpg",
+      standing: "https://images.unsplash.com/photo-1567013127542-490d757e51fc?q=80&w=500&auto=format&fit=crop"
+    },
+    {
+      name: "Sousa",
+      photo: "https://randomuser.me/api/portraits/men/61.jpg",
+      standing: "https://images.unsplash.com/photo-1606335543042-57c525922933?q=80&w=500&auto=format&fit=crop"
+    },
+    {
+      name: "Tanaka",
+      photo: "https://randomuser.me/api/portraits/men/75.jpg",
+      standing: "https://images.unsplash.com/photo-1546519638-68e109498ffc?q=80&w=500&auto=format&fit=crop"
+    },
+    {
+      name: "Martins",
+      photo: "https://randomuser.me/api/portraits/men/82.jpg",
+      standing: "https://images.unsplash.com/photo-1552072092-7f9b8d63efcb?q=80&w=500&auto=format&fit=crop"
+    },
+    {
+      name: "Moretti",
+      photo: "https://randomuser.me/api/portraits/men/90.jpg",
+      standing: "https://images.unsplash.com/photo-1599058917212-d750089bc07e?q=80&w=500&auto=format&fit=crop"
+    },
+    {
+      name: "Almeida",
+      photo: "https://randomuser.me/api/portraits/men/12.jpg",
+      standing: "https://images.unsplash.com/photo-1546519638-68e109498ffc?q=80&w=500&auto=format&fit=crop"
+    }
   ];
-
-  function athleteHTML(athlete) {
-    return `
-      <div class="fighter">
-        <div class="hair"></div>
-        <div class="head" style="background:${athlete.skin}">
-          <div class="eye left"></div>
-          <div class="eye right"></div>
-          <div class="nose"></div>
-        </div>
-        <div class="body"></div>
-        <div class="belt"></div>
-      </div>
-    `;
-  }
 
   function showScreen(id) {
     document.querySelectorAll(".screen").forEach(screen => screen.classList.remove("active"));
@@ -569,10 +856,32 @@ Sim — aqui está o código completo corrigido, já permitindo selecionar e des
   function selectCategory(value) {
     category = value;
     currentPlace = 1;
-    podium = { 1: null, 2: null, 3: null };
+
+    podium = {
+      1: null,
+      2: null,
+      3: null
+    };
+
     renderAthletes();
     updateSummary();
     showScreen("atletas");
+  }
+
+  function athleteHTML(athlete) {
+    return `
+      <div class="athlete-photo">
+        <img src="${athlete.photo}" alt="${athlete.name}">
+      </div>
+    `;
+  }
+
+  function standingAthleteHTML(athlete) {
+    return `
+      <div class="standing-athlete">
+        <img src="${athlete.standing}" alt="${athlete.name}">
+      </div>
+    `;
   }
 
   function renderAthletes() {
@@ -637,9 +946,9 @@ Sim — aqui está o código completo corrigido, já permitindo selecionar e des
     document.getElementById("name2").innerText = podium[2].name;
     document.getElementById("name3").innerText = podium[3].name;
 
-    document.getElementById("person1").innerHTML = athleteHTML(podium[1]);
-    document.getElementById("person2").innerHTML = athleteHTML(podium[2]);
-    document.getElementById("person3").innerHTML = athleteHTML(podium[3]);
+    document.getElementById("person1").innerHTML = standingAthleteHTML(podium[1]);
+    document.getElementById("person2").innerHTML = standingAthleteHTML(podium[2]);
+    document.getElementById("person3").innerHTML = standingAthleteHTML(podium[3]);
 
     document.getElementById("successBox").style.display = "none";
     showScreen("podio");
