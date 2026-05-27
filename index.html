@@ -1,305 +1,392 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LutaBet</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family:Arial, Helvetica, sans-serif;
-    }
+<title>LutaBet</title>
 
-    body{
-      background:#000;
-      color:#fff;
-    }
+<style>
 
-    header{
-      width:100%;
-      height:90px;
-      background:#0b0b0b;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:0 60px;
-      border-bottom:1px solid #1f1f1f;
-    }
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, Helvetica, sans-serif;
+}
 
-    .logo{
-      font-size:40px;
-      font-weight:900;
-    }
+body{
+  background:#000;
+  color:white;
+}
 
-    .logo span{
-      color:#e53935;
-      font-style:italic;
-    }
+/* HEADER */
 
-    nav{
-      display:flex;
-      gap:40px;
-    }
+header{
+  width:100%;
+  height:90px;
+  background:#0b0b0b;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 60px;
+  border-bottom:1px solid #1f1f1f;
+}
 
-    nav a{
-      text-decoration:none;
-      color:white;
-      font-size:18px;
-      font-weight:bold;
-      transition:0.3s;
-    }
+.logo{
+  font-size:40px;
+  font-weight:900;
+}
 
-    nav a:hover{
-      color:#e53935;
-    }
+.logo span{
+  color:#e53935;
+  font-style:italic;
+}
 
-    .btn{
-      background:#151515;
-      padding:15px 25px;
-      border-radius:8px;
-      border:none;
-      color:white;
-      font-size:16px;
-      font-weight:bold;
-      cursor:pointer;
-      transition:0.3s;
-    }
+nav{
+  display:flex;
+  gap:40px;
+}
 
-    .btn:hover{
-      background:#e53935;
-    }
+nav a{
+  color:white;
+  text-decoration:none;
+  font-size:18px;
+  font-weight:bold;
+  transition:0.3s;
+}
 
-    .hero{
-      height:520px;
-      background:
-      linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
-      url('https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?q=80&w=1974&auto=format&fit=crop');
-      background-size:cover;
-      background-position:center;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-    }
+nav a:hover{
+  color:#e53935;
+}
 
-    .hero h1{
-      font-size:90px;
-      text-transform:uppercase;
-      line-height:1;
-      font-weight:900;
-    }
+.btn{
+  background:#151515;
+  border:none;
+  padding:15px 25px;
+  border-radius:8px;
+  color:white;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.3s;
+}
 
-    .container{
-      padding:50px 60px;
-    }
+.btn:hover{
+  background:#e53935;
+}
 
-    .title{
-      font-size:55px;
-      margin-bottom:30px;
-      text-transform:uppercase;
-      font-weight:900;
-    }
+/* HERO */
 
-    .content{
-      display:grid;
-      grid-template-columns:300px 1fr;
-      gap:30px;
-    }
+.hero{
+  position:relative;
+  width:100%;
+  height:520px;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
 
-    .sports{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:20px;
-    }
+.carousel{
+  position:absolute;
+  width:100%;
+  height:100%;
+}
 
-    .sport-box{
-      background:#111;
-      border-radius:10px;
-      height:140px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      flex-direction:column;
-      border:1px solid #1f1f1f;
-      transition:0.3s;
-    }
+.slide{
+  position:absolute;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:0;
+  transition:opacity 1s ease-in-out;
+}
 
-    .sport-box:hover{
-      border-color:#e53935;
-      transform:translateY(-5px);
-    }
+.slide.active{
+  opacity:1;
+}
 
-    .sport-box h3{
-      margin-top:10px;
-      font-size:22px;
-    }
+.overlay{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.55);
+  z-index:1;
+}
 
-    .icon{
-      font-size:45px;
-    }
+.hero h1{
+  position:relative;
+  z-index:2;
+  font-size:90px;
+  text-transform:uppercase;
+  line-height:1;
+  font-weight:900;
+}
 
-    table{
-      width:100%;
-      border-collapse:collapse;
-      background:#111;
-      border-radius:10px;
-      overflow:hidden;
-    }
+/* CONTEÚDO */
 
-    th{
-      background:#151515;
-      padding:20px;
-      font-size:22px;
-      text-align:left;
-    }
+.container{
+  padding:50px 60px;
+}
 
-    td{
-      padding:22px 20px;
-      border-top:1px solid #1f1f1f;
-      font-size:22px;
-      font-weight:bold;
-    }
+.title{
+  font-size:55px;
+  margin-bottom:30px;
+  text-transform:uppercase;
+  font-weight:900;
+}
 
-    tr:hover{
-      background:#1a1a1a;
-    }
+.content{
+  display:grid;
+  grid-template-columns:300px 1fr;
+  gap:30px;
+}
 
-    @media(max-width:900px){
+.sports{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
 
-      header{
-        flex-direction:column;
-        height:auto;
-        padding:20px;
-        gap:20px;
-      }
+.sport-box{
+  background:#111;
+  border-radius:10px;
+  height:140px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  border:1px solid #1f1f1f;
+  transition:0.3s;
+}
 
-      nav{
-        flex-wrap:wrap;
-        justify-content:center;
-      }
+.sport-box:hover{
+  border-color:#e53935;
+  transform:translateY(-5px);
+}
 
-      .hero h1{
-        font-size:55px;
-      }
+.icon{
+  font-size:45px;
+}
 
-      .content{
-        grid-template-columns:1fr;
-      }
+.sport-box h3{
+  margin-top:10px;
+  font-size:22px;
+}
 
-      .container{
-        padding:30px 20px;
-      }
-    }
+/* TABELA */
 
-  </style>
+table{
+  width:100%;
+  border-collapse:collapse;
+  background:#111;
+  border-radius:10px;
+  overflow:hidden;
+}
+
+th{
+  background:#151515;
+  padding:20px;
+  text-align:left;
+  font-size:22px;
+}
+
+td{
+  padding:22px 20px;
+  border-top:1px solid #1f1f1f;
+  font-size:22px;
+  font-weight:bold;
+}
+
+tr:hover{
+  background:#1a1a1a;
+}
+
+/* RESPONSIVO */
+
+@media(max-width:900px){
+
+  header{
+    flex-direction:column;
+    height:auto;
+    padding:20px;
+    gap:20px;
+  }
+
+  nav{
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+
+  .hero h1{
+    font-size:55px;
+  }
+
+  .content{
+    grid-template-columns:1fr;
+  }
+
+  .container{
+    padding:30px 20px;
+  }
+
+}
+
+</style>
 </head>
 
 <body>
 
-  <header>
+<header>
 
-    <div class="logo">
-      LUTA<span>BET</span>
-    </div>
+  <div class="logo">
+    LUTA<span>BET</span>
+  </div>
 
-    <nav>
-      <a href="#">Início</a>
-      <a href="#">Lutas</a>
-      <a href="#">Atletas</a>
-      <a href="#">Apostar</a>
-    </nav>
+  <nav>
+    <a href="#">Início</a>
+    <a href="#">Lutas</a>
+    <a href="#">Atletas</a>
+    <a href="#">Apostar</a>
+  </nav>
 
-    <button class="btn">
-      Login/Cadastro
-    </button>
+  <button class="btn">
+    Login/Cadastro
+  </button>
 
-  </header>
+</header>
 
-  <section class="hero">
-    <h1>
-      Apostas <br>
-      em Lutas
-    </h1>
-  </section>
+<!-- HERO / CARROSSEL -->
 
-  <section class="container">
+<section class="hero">
 
-    <h2 class="title">
-      Próximas Lutas
-    </h2>
+  <div class="carousel">
 
-    <div class="content">
+    <img src="https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?q=80&w=1974&auto=format&fit=crop"
+    class="slide active">
 
-      <div class="sports">
+    <img src="https://images.unsplash.com/photo-1517438322307-e67111335449?q=80&w=1974&auto=format&fit=crop"
+    class="slide">
 
-        <div class="sport-box">
-          <div class="icon">🥊</div>
-          <h3>MMA</h3>
-        </div>
+    <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1974&auto=format&fit=crop"
+    class="slide">
 
-        <div class="sport-box">
-          <div class="icon">🥋</div>
-          <h3>Judô</h3>
-        </div>
+    <img src="https://images.unsplash.com/photo-1555597673-b21d5c935865?q=80&w=1974&auto=format&fit=crop"
+    class="slide">
 
-        <div class="sport-box">
-          <div class="icon">👊</div>
-          <h3>Karatê</h3>
-        </div>
+  </div>
 
-        <div class="sport-box">
-          <div class="icon">🤼</div>
-          <h3>Jiu-Jitsu</h3>
-        </div>
+  <div class="overlay"></div>
 
+  <h1>
+    Apostas <br>
+    em Lutas
+  </h1>
+
+</section>
+
+<!-- CONTEÚDO -->
+
+<section class="container">
+
+  <h2 class="title">
+    Próximas Lutas
+  </h2>
+
+  <div class="content">
+
+    <div class="sports">
+
+      <div class="sport-box">
+        <div class="icon">🥊</div>
+        <h3>MMA</h3>
       </div>
 
-      <table>
+      <div class="sport-box">
+        <div class="icon">🥋</div>
+        <h3>Judô</h3>
+      </div>
 
-        <thead>
-          <tr>
-            <th>Evento</th>
-            <th>Odds 1</th>
-            <th>Odds 2</th>
-          </tr>
-        </thead>
+      <div class="sport-box">
+        <div class="icon">👊</div>
+        <h3>Karatê</h3>
+      </div>
 
-        <tbody>
-
-          <tr>
-            <td>Sousa vs. Oliveira</td>
-            <td>1.75</td>
-            <td>2.05</td>
-          </tr>
-
-          <tr>
-            <td>Kimura vs. Silva</td>
-            <td>1.80</td>
-            <td>1.80</td>
-          </tr>
-
-          <tr>
-            <td>Johnson vs. Costa</td>
-            <td>2.35</td>
-            <td>2.30</td>
-          </tr>
-
-          <tr>
-            <td>Mori vs. Díaz</td>
-            <td>1.75</td>
-            <td>2.05</td>
-          </tr>
-
-        </tbody>
-
-      </table>
+      <div class="sport-box">
+        <div class="icon">🤼</div>
+        <h3>Jiu-Jitsu</h3>
+      </div>
 
     </div>
 
-  </section>
+    <table>
+
+      <thead>
+        <tr>
+          <th>Evento</th>
+          <th>Odds 1</th>
+          <th>Odds 2</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        <tr>
+          <td>Sousa vs. Oliveira</td>
+          <td>1.75</td>
+          <td>2.05</td>
+        </tr>
+
+        <tr>
+          <td>Kimura vs. Silva</td>
+          <td>1.80</td>
+          <td>1.80</td>
+        </tr>
+
+        <tr>
+          <td>Johnson vs. Costa</td>
+          <td>2.35</td>
+          <td>2.30</td>
+        </tr>
+
+        <tr>
+          <td>Mori vs. Díaz</td>
+          <td>1.75</td>
+          <td>2.05</td>
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</section>
+
+<script>
+
+const slides = document.querySelectorAll(".slide");
+
+let current = 0;
+
+function changeSlide(){
+
+  slides[current].classList.remove("active");
+
+  current++;
+
+  if(current >= slides.length){
+    current = 0;
+  }
+
+  slides[current].classList.add("active");
+}
+
+setInterval(changeSlide, 3000);
+
+</script>
 
 </body>
 </html>
