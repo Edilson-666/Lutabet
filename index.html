@@ -172,8 +172,24 @@
     }
 
     .sport-card {
-      padding: 28px 10px;
+      height: 220px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 20px;
       text-align: center;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .sport-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.92), rgba(0,0,0,.15));
+      z-index: 1;
     }
 
     .sport-card:hover,
@@ -187,11 +203,16 @@
     .sport-icon {
       font-size: 52px;
       margin-bottom: 12px;
+      position: relative;
+      z-index: 2;
     }
 
     .sport-card p {
-      font-size: 20px;
+      font-size: 28px;
       font-weight: bold;
+      position: relative;
+      z-index: 2;
+      text-shadow: 0 4px 12px rgba(0,0,0,.8);
     }
 
     .option-list {
@@ -699,22 +720,22 @@
   <h2>Escolha a modalidade</h2>
 
   <div class="sport-grid">
-    <div class="sport-card" onclick="selectSport('Judô')">
+    <div class="sport-card" onclick="selectSport('Judô')" style="background-image:url('https://images.unsplash.com/photo-1517438322307-e67111335449?q=80&w=1200&auto=format&fit=crop');">
       <div class="sport-icon">🥋</div>
       <p>Judô</p>
     </div>
 
-    <div class="sport-card" onclick="selectSport('MMA')">
+    <div class="sport-card" onclick="selectSport('MMA')" style="background-image:url('https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1200&auto=format&fit=crop');">
       <div class="sport-icon">🥊</div>
       <p>MMA</p>
     </div>
 
-    <div class="sport-card" onclick="selectSport('Jiu-Jitsu')">
+    <div class="sport-card" onclick="selectSport('Jiu-Jitsu')" style="background-image:url('https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=1200&auto=format&fit=crop');">
       <div class="sport-icon">🤼</div>
       <p>Jiu-Jitsu</p>
     </div>
 
-    <div class="sport-card" onclick="selectSport('Capoeira')">
+    <div class="sport-card" onclick="selectSport('Capoeira')" style="background-image:url('https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?q=80&w=1200&auto=format&fit=crop');">
       <div class="sport-icon">🔥</div>
       <p>Capoeira</p>
     </div>
