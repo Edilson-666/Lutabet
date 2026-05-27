@@ -1,625 +1,305 @@
-diff --git a/index.html b/index.html
-index 7594df1470193f9420476d6c6212edbba0245f20..8f964050ac3e966418bdb2dadc1501e3ce1f6888 100644
---- a/index.html
-+++ b/index.html
-@@ -84,50 +84,75 @@
-       display: flex;
-       align-items: center;
-       justify-content: space-between;
-       background: #080808;
-       border-bottom: 1px solid #1b1b1b;
-     }
- 
-     .mini-logo {
-       font-size: 28px;
-       font-weight: 900;
-       font-style: italic;
-     }
- 
-     .mini-logo span {
-       color: #ff2424;
-     }
- 
-     .mini-login {
-       background: #151515;
-       padding: 10px 18px;
-       border-radius: 8px;
-       font-size: 14px;
-       border: 1px solid #222;
-     }
- 
-+    .main-tabs {
-+      display: flex;
-+      gap: 10px;
-+      padding: 18px 28px 0;
-+    }
-+
-+    .main-tab {
-+      border: 1px solid #2a2a2a;
-+      background: #101010;
-+      color: #d5d5d5;
-+      padding: 10px 16px;
-+      border-radius: 10px 10px 0 0;
-+      font-size: 14px;
-+      font-weight: 700;
-+      letter-spacing: .4px;
-+      text-transform: uppercase;
-+    }
-+
-+    .main-tab.active {
-+      color: #fff;
-+      border-color: #ff2424;
-+      background: linear-gradient(180deg, #2a0c0c, #120707);
-+      box-shadow: 0 -1px 14px rgba(255,36,36,.2);
-+    }
-+
-     .hero {
-       height: 460px;
-       background:
-         linear-gradient(to bottom, rgba(0,0,0,.2), rgba(0,0,0,.9)),
-         url("https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?q=80&w=1800&auto=format&fit=crop");
-       background-size: cover;
-       background-position: center;
-       display: flex;
-       align-items: flex-end;
-       justify-content: center;
-       text-align: center;
-       padding-bottom: 70px;
-       animation: zoom 7s infinite alternate ease-in-out;
-     }
- 
-     @keyframes zoom {
-       from { background-size: 100%; }
-       to { background-size: 112%; }
-     }
- 
-     .hero h1 {
-       font-size: 80px;
-       line-height: .9;
-       font-weight: 900;
-       text-transform: uppercase;
-@@ -344,66 +369,159 @@
-     .eye {
-       width: 6px;
-       height: 6px;
-       background: #111;
-       border-radius: 50%;
-       position: absolute;
-       top: 38px;
-     }
- 
-     .eye.left { left: 20px; }
-     .eye.right { right: 20px; }
- 
-     .nose {
-       width: 7px;
-       height: 13px;
-       background: rgba(0,0,0,.18);
-       position: absolute;
-       top: 44px;
-       left: 30px;
-       border-radius: 5px;
-     }
- 
-     .body {
-       width: 130px;
-       height: 125px;
--      background: linear-gradient(135deg, #fff, #dcdcdc);
-+      background: linear-gradient(140deg, #ffffff 0%, #efefef 58%, #dadada 100%);
-       position: absolute;
-       bottom: 0;
-       border-radius: 18px 18px 4px 4px;
--      clip-path: polygon(12% 0, 42% 0, 50% 34%, 58% 0, 88% 0, 100% 100%, 0 100%);
--      border: 1px solid #ccc;
-+      border: 1px solid #d7d7d7;
-+      box-shadow: inset 0 -10px 14px rgba(0, 0, 0, .12);
-+    }
-+
-+    .body::before {
-+      content: "";
-+      position: absolute;
-+      inset: 0;
-+      border-radius: inherit;
-+      background: repeating-linear-gradient(
-+        100deg,
-+        rgba(255,255,255,.35) 0,
-+        rgba(255,255,255,.35) 3px,
-+        rgba(0,0,0,.02) 3px,
-+        rgba(0,0,0,.02) 6px
-+      );
-+      opacity: .35;
-+      pointer-events: none;
-+    }
-+
-+    .lapel {
-+      position: absolute;
-+      top: 18px;
-+      width: 46px;
-+      height: 72px;
-+      background: linear-gradient(180deg, #ffffff, #e5e5e5);
-+      border: 1px solid #d0d0d0;
-+      z-index: 3;
-+    }
-+
-+    .lapel.left {
-+      left: 26px;
-+      transform: skewY(26deg) rotate(-4deg);
-+      border-radius: 8px 0 10px 8px;
-+    }
-+
-+    .lapel.right {
-+      right: 26px;
-+      transform: skewY(-26deg) rotate(4deg);
-+      border-radius: 0 8px 8px 10px;
-+    }
-+
-+    .sleeve {
-+      position: absolute;
-+      width: 32px;
-+      height: 64px;
-+      background: linear-gradient(145deg, #f7f7f7, #e0e0e0);
-+      border: 1px solid #cdcdcd;
-+      top: 38px;
-+      z-index: 1;
-+    }
-+
-+    .sleeve.left {
-+      left: 4px;
-+      transform: rotate(20deg);
-+      border-radius: 10px 6px 10px 8px;
-+    }
-+
-+    .sleeve.right {
-+      right: 4px;
-+      transform: rotate(-20deg);
-+      border-radius: 6px 10px 8px 10px;
-     }
- 
-     .belt {
-       width: 120px;
-       height: 14px;
--      background: #050505;
-+      background: linear-gradient(180deg, #1a1a1a, #050505);
-       position: absolute;
-       bottom: 30px;
-       border-radius: 10px;
-       z-index: 5;
-+      box-shadow: 0 2px 6px rgba(0,0,0,.45);
-+    }
-+
-+    .belt-knot {
-+      width: 24px;
-+      height: 18px;
-+      background: #0c0c0c;
-+      position: absolute;
-+      bottom: 28px;
-+      left: 50%;
-+      transform: translateX(-50%);
-+      border-radius: 6px;
-+      z-index: 6;
-+    }
-+
-+    .belt-tail {
-+      width: 10px;
-+      height: 40px;
-+      background: linear-gradient(180deg, #141414, #050505);
-+      position: absolute;
-+      bottom: -10px;
-+      border-radius: 6px;
-+      z-index: 5;
-+    }
-+
-+    .belt-tail.left {
-+      left: 48%;
-+      transform: rotate(8deg);
-+    }
-+
-+    .belt-tail.right {
-+      right: 48%;
-+      transform: rotate(-8deg);
-     }
- 
-     .athlete-name {
-       padding: 13px;
-       text-align: center;
-       background: #080808;
-       font-size: 18px;
-       font-weight: bold;
-     }
- 
-     .summary {
-       margin-top: 30px;
-       border: 1px solid #242424;
-       border-radius: 12px;
-       display: grid;
-       grid-template-columns: repeat(3, 1fr);
-       overflow: hidden;
-       background: #080808;
-     }
- 
-     .summary div {
-       padding: 18px;
-       text-align: center;
-       border-right: 1px solid #242424;
-       font-size: 18px;
-@@ -438,80 +556,160 @@
- 
-     .podium-title {
-       text-align: center;
-       font-size: 36px;
-       margin-bottom: 40px;
-       position: relative;
-       z-index: 2;
-       text-transform: uppercase;
-     }
- 
-     .podium {
-       display: flex;
-       align-items: flex-end;
-       justify-content: center;
-       gap: 25px;
-       position: relative;
-       z-index: 2;
-     }
- 
-     .winner-card {
-       width: 28%;
-       text-align: center;
-       animation: riseUp .7s ease;
-     }
- 
-+    .winner-card.first-place .fighter {
-+      filter: drop-shadow(0 0 18px rgba(255, 220, 120, .2));
-+    }
-+
-     @keyframes riseUp {
-       from { opacity: 0; transform: translateY(70px); }
-       to { opacity: 1; transform: translateY(0); }
-     }
- 
-     .winner-card .fighter {
-       height: 310px;
-     }
- 
-     .winner-card .head {
-       width: 90px;
-       height: 100px;
-     }
- 
-     .winner-card .hair {
-       width: 92px;
-       height: 38px;
-     }
- 
-     .winner-card .body {
-       width: 190px;
-       height: 190px;
-     }
- 
-+    .winner-card .lapel {
-+      width: 62px;
-+      height: 110px;
-+      top: 26px;
-+    }
-+
-+    .winner-card .lapel.left {
-+      left: 36px;
-+    }
-+
-+    .winner-card .lapel.right {
-+      right: 36px;
-+    }
-+
-+    .winner-card .sleeve {
-+      width: 44px;
-+      height: 90px;
-+      top: 62px;
-+    }
-+
-+    .winner-card .sleeve.left {
-+      left: 8px;
-+    }
-+
-+    .winner-card .sleeve.right {
-+      right: 8px;
-+    }
-+
-     .winner-card .belt {
-       width: 175px;
-       height: 18px;
-       bottom: 45px;
-     }
- 
-+    .winner-card .belt-knot {
-+      width: 30px;
-+      height: 22px;
-+      bottom: 43px;
-+    }
-+
-+    .winner-card .belt-tail {
-+      width: 12px;
-+      height: 52px;
-+      bottom: -6px;
-+    }
-+
-+    .winner-card .belt-tail.left {
-+      left: 47%;
-+    }
-+
-+    .winner-card .belt-tail.right {
-+      right: 47%;
-+    }
-+
-+    .winner-medal {
-+      width: 56px;
-+      height: 56px;
-+      border-radius: 50%;
-+      margin: -8px auto 8px;
-+      border: 3px solid rgba(255,255,255,.28);
-+      display: flex;
-+      align-items: center;
-+      justify-content: center;
-+      font-size: 24px;
-+      box-shadow: inset 0 2px 8px rgba(255,255,255,.2), 0 4px 12px rgba(0,0,0,.4);
-+    }
-+
-+    .first-place .winner-medal {
-+      background: radial-gradient(circle at 35% 30%, #fff4bf, #d7a429 70%);
-+      color: #5f3d00;
-+    }
-+
-+    .second-place .winner-medal {
-+      background: radial-gradient(circle at 35% 30%, #fafafa, #9ca1aa 70%);
-+      color: #2e3138;
-+    }
-+
-+    .third-place .winner-medal {
-+      background: radial-gradient(circle at 35% 30%, #efc39a, #9a5428 70%);
-+      color: #4e240a;
-+    }
-+
-     .winner-name {
-       background: rgba(0,0,0,.8);
-       display: inline-block;
-       padding: 8px 18px;
-       border-radius: 8px;
-       margin-bottom: -8px;
-       position: relative;
-       z-index: 8;
-       font-size: 20px;
-       font-weight: bold;
-     }
- 
-     .podium-block {
-       height: 140px;
-       border-radius: 14px 14px 0 0;
-       display: flex;
-       align-items: center;
-       justify-content: center;
-       font-size: 65px;
-       font-weight: 900;
-       text-shadow: 0 3px 8px black;
-     }
- 
-     .first-place .fighter {
-       height: 360px;
-@@ -553,85 +751,99 @@
-       border: 1px solid #006b25;
-       border-radius: 10px;
-       padding: 18px;
-       text-align: center;
-       position: relative;
-       z-index: 2;
-       display: none;
-       font-size: 18px;
-     }
- 
-     .back {
-       background: transparent;
-       border: 1px solid #333;
-       color: white;
-       padding: 10px 16px;
-       border-radius: 8px;
-       margin-bottom: 20px;
-       cursor: pointer;
-     }
- 
-     @media(max-width: 700px) {
-       header { padding: 0 22px; }
-       .screen { padding: 14px; }
-       .content { padding: 25px 18px; }
-       .container { max-width: 100%; }
-+      .main-tabs { padding: 14px 16px 0; }
-       .hero { height: 300px; }
-       .hero h1 { font-size: 44px; }
-       h2 { font-size: 30px; }
-       .sport-grid { grid-template-columns: repeat(2, 1fr); }
-       .category-grid { grid-template-columns: repeat(2, 1fr); }
-       .athlete-grid { grid-template-columns: repeat(2, 1fr); }
-       .podium-scene { padding: 20px 8px; min-height: 560px; }
-       .podium { gap: 8px; }
-       .winner-card { width: 33%; }
-       .winner-card .fighter { height: 190px; }
-       .first-place .fighter { height: 220px; }
-       .winner-card .head { width: 60px; height: 70px; }
-       .winner-card .hair { width: 62px; height: 26px; }
-       .winner-card .body { width: 100px; height: 105px; }
-+      .winner-card .lapel { width: 35px; height: 62px; top: 14px; }
-+      .winner-card .lapel.left { left: 18px; }
-+      .winner-card .lapel.right { right: 18px; }
-+      .winner-card .sleeve { width: 24px; height: 44px; top: 36px; }
-+      .winner-card .sleeve.left { left: 3px; }
-+      .winner-card .sleeve.right { right: 3px; }
-       .winner-card .belt { width: 95px; height: 12px; bottom: 25px; }
-+      .winner-card .belt-knot { width: 18px; height: 12px; bottom: 24px; }
-+      .winner-card .belt-tail { width: 7px; height: 24px; bottom: -1px; }
-+      .winner-medal { width: 34px; height: 34px; font-size: 15px; margin: -2px auto 6px; }
-       .podium-block { height: 85px; font-size: 40px; }
-       .first-place .podium-block { height: 115px; }
-       .green-btn, .success { width: 95%; }
-     }
-   </style>
- </head>
- 
- <body>
- 
-   <header>
-     <div class="logo">LUTA<span>BET</span></div>
-     <div class="login">Login/Cadastro</div>
-   </header>
- 
-   <section id="home" class="screen active">
-     <div class="container">
-       <div class="topbar">
-         <div class="mini-logo">LUTA<span>BET</span></div>
-         <div class="mini-login">Login/Cadastro</div>
-       </div>
-+      
-+      <div class="main-tabs">
-+        <div class="main-tab active">Principal</div>
-+      </div>
- 
-       <div class="hero">
-         <h1>Apostas<br><span>em Lutas</span></h1>
-       </div>
- 
-       <div class="content">
-         <h2>Escolha a modalidade</h2>
- 
-         <div class="sport-grid">
-           <div class="sport-card" onclick="selectSport('Judô')">
-             <div class="sport-icon">🥋</div>
-             <p>Judô</p>
-           </div>
-           <div class="sport-card" onclick="selectSport('MMA')">
-             <div class="sport-icon">🥊</div>
-             <p>MMA</p>
-           </div>
-           <div class="sport-card" onclick="selectSport('Jiu-Jitsu')">
-             <div class="sport-icon">🤼</div>
-             <p>Jiu-Jitsu</p>
-           </div>
-           <div class="sport-card" onclick="selectSport('Capoeira')">
-             <div class="sport-icon">🔥</div>
-             <p>Capoeira</p>
-           </div>
-@@ -730,108 +942,118 @@
-           <div><b>1º</b><br><span id="sum1">---</span></div>
-           <div><b>2º</b><br><span id="sum2">---</span></div>
-           <div><b>3º</b><br><span id="sum3">---</span></div>
-         </div>
- 
-         <button class="red-btn" onclick="goPodium()">Ver pódio</button>
-       </div>
-     </div>
-   </section>
- 
-   <section id="podio" class="screen">
-     <div class="container">
-       <div class="topbar">
-         <div class="mini-logo">LUTA<span>BET</span></div>
-         <div class="mini-login">Login/Cadastro</div>
-       </div>
- 
-       <div class="podium-scene">
-         <button class="back" onclick="showScreen('atletas')">← Voltar</button>
- 
-         <div class="podium-title">Confirme sua aposta</div>
- 
-         <div class="podium">
-           <div class="winner-card second-place">
-             <div class="winner-name" id="name2">2º</div>
-+            <div class="winner-medal">🥈</div>
-             <div id="person2"></div>
-             <div class="podium-block">2</div>
-           </div>
- 
-           <div class="winner-card first-place">
-             <div class="winner-name" id="name1">1º</div>
-+            <div class="winner-medal">🥇</div>
-             <div id="person1"></div>
-             <div class="podium-block">1</div>
-           </div>
- 
-           <div class="winner-card third-place">
-             <div class="winner-name" id="name3">3º</div>
-+            <div class="winner-medal">🥉</div>
-             <div id="person3"></div>
-             <div class="podium-block">3</div>
-           </div>
-         </div>
- 
-         <button class="green-btn" onclick="confirmBet()">Apostar</button>
- 
-         <div class="success" id="successBox"></div>
-       </div>
-     </div>
-   </section>
- 
-   <script>
-     let sport = "Judô";
-     let level = "";
-     let eventName = "";
-     let gender = "Masculino";
-     let category = "";
-     let currentPlace = 1;
- 
-     let podium = { 1: null, 2: null, 3: null };
- 
-     const athletes = [
-       { name: "Pereira", skin: "#c98b5a" },
-       { name: "Costa", skin: "#b57948" },
-       { name: "Silva", skin: "#d09a6b" },
-       { name: "Rossi", skin: "#c68655" },
-       { name: "Oliveira", skin: "#b87345" },
-       { name: "Sousa", skin: "#9f633b" },
-       { name: "Tanaka", skin: "#d1a06f" },
-       { name: "Martins", skin: "#b98252" },
-       { name: "Moretti", skin: "#c78b5d" },
-       { name: "Almeida", skin: "#a66a43" }
-     ];
- 
-     function athleteHTML(athlete) {
-       return `
-         <div class="fighter">
-           <div class="hair"></div>
-           <div class="head" style="background:${athlete.skin}">
-             <div class="eye left"></div>
-             <div class="eye right"></div>
-             <div class="nose"></div>
-           </div>
-           <div class="body"></div>
-+          <div class="sleeve left"></div>
-+          <div class="sleeve right"></div>
-+          <div class="lapel left"></div>
-+          <div class="lapel right"></div>
-           <div class="belt"></div>
-+          <div class="belt-knot"></div>
-+          <div class="belt-tail left"></div>
-+          <div class="belt-tail right"></div>
-         </div>
-       `;
-     }
- 
-     function showScreen(id) {
-       document.querySelectorAll(".screen").forEach(screen => screen.classList.remove("active"));
-       document.getElementById(id).classList.add("active");
-       window.scrollTo(0, 0);
-     }
- 
-     function selectSport(value) {
-       sport = value;
-       if (sport !== "Judô") {
-         alert("Demonstração disponível para Judô.");
-         sport = "Judô";
-       }
-       showScreen("tipo");
-     }
- 
-     function selectLevel(value) {
-       level = value;
-       document.getElementById("eventTitle").innerText = sport + " " + level;
-       showScreen("eventos");
-     }
- 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LutaBet</title>
 
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      background:#000;
+      color:#fff;
+    }
+
+    header{
+      width:100%;
+      height:90px;
+      background:#0b0b0b;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 60px;
+      border-bottom:1px solid #1f1f1f;
+    }
+
+    .logo{
+      font-size:40px;
+      font-weight:900;
+    }
+
+    .logo span{
+      color:#e53935;
+      font-style:italic;
+    }
+
+    nav{
+      display:flex;
+      gap:40px;
+    }
+
+    nav a{
+      text-decoration:none;
+      color:white;
+      font-size:18px;
+      font-weight:bold;
+      transition:0.3s;
+    }
+
+    nav a:hover{
+      color:#e53935;
+    }
+
+    .btn{
+      background:#151515;
+      padding:15px 25px;
+      border-radius:8px;
+      border:none;
+      color:white;
+      font-size:16px;
+      font-weight:bold;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .btn:hover{
+      background:#e53935;
+    }
+
+    .hero{
+      height:520px;
+      background:
+      linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+      url('https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?q=80&w=1974&auto=format&fit=crop');
+      background-size:cover;
+      background-position:center;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+    }
+
+    .hero h1{
+      font-size:90px;
+      text-transform:uppercase;
+      line-height:1;
+      font-weight:900;
+    }
+
+    .container{
+      padding:50px 60px;
+    }
+
+    .title{
+      font-size:55px;
+      margin-bottom:30px;
+      text-transform:uppercase;
+      font-weight:900;
+    }
+
+    .content{
+      display:grid;
+      grid-template-columns:300px 1fr;
+      gap:30px;
+    }
+
+    .sports{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:20px;
+    }
+
+    .sport-box{
+      background:#111;
+      border-radius:10px;
+      height:140px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+      border:1px solid #1f1f1f;
+      transition:0.3s;
+    }
+
+    .sport-box:hover{
+      border-color:#e53935;
+      transform:translateY(-5px);
+    }
+
+    .sport-box h3{
+      margin-top:10px;
+      font-size:22px;
+    }
+
+    .icon{
+      font-size:45px;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      background:#111;
+      border-radius:10px;
+      overflow:hidden;
+    }
+
+    th{
+      background:#151515;
+      padding:20px;
+      font-size:22px;
+      text-align:left;
+    }
+
+    td{
+      padding:22px 20px;
+      border-top:1px solid #1f1f1f;
+      font-size:22px;
+      font-weight:bold;
+    }
+
+    tr:hover{
+      background:#1a1a1a;
+    }
+
+    @media(max-width:900px){
+
+      header{
+        flex-direction:column;
+        height:auto;
+        padding:20px;
+        gap:20px;
+      }
+
+      nav{
+        flex-wrap:wrap;
+        justify-content:center;
+      }
+
+      .hero h1{
+        font-size:55px;
+      }
+
+      .content{
+        grid-template-columns:1fr;
+      }
+
+      .container{
+        padding:30px 20px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <header>
+
+    <div class="logo">
+      LUTA<span>BET</span>
+    </div>
+
+    <nav>
+      <a href="#">Início</a>
+      <a href="#">Lutas</a>
+      <a href="#">Atletas</a>
+      <a href="#">Apostar</a>
+    </nav>
+
+    <button class="btn">
+      Login/Cadastro
+    </button>
+
+  </header>
+
+  <section class="hero">
+    <h1>
+      Apostas <br>
+      em Lutas
+    </h1>
+  </section>
+
+  <section class="container">
+
+    <h2 class="title">
+      Próximas Lutas
+    </h2>
+
+    <div class="content">
+
+      <div class="sports">
+
+        <div class="sport-box">
+          <div class="icon">🥊</div>
+          <h3>MMA</h3>
+        </div>
+
+        <div class="sport-box">
+          <div class="icon">🥋</div>
+          <h3>Judô</h3>
+        </div>
+
+        <div class="sport-box">
+          <div class="icon">👊</div>
+          <h3>Karatê</h3>
+        </div>
+
+        <div class="sport-box">
+          <div class="icon">🤼</div>
+          <h3>Jiu-Jitsu</h3>
+        </div>
+
+      </div>
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>Evento</th>
+            <th>Odds 1</th>
+            <th>Odds 2</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>Sousa vs. Oliveira</td>
+            <td>1.75</td>
+            <td>2.05</td>
+          </tr>
+
+          <tr>
+            <td>Kimura vs. Silva</td>
+            <td>1.80</td>
+            <td>1.80</td>
+          </tr>
+
+          <tr>
+            <td>Johnson vs. Costa</td>
+            <td>2.35</td>
+            <td>2.30</td>
+          </tr>
+
+          <tr>
+            <td>Mori vs. Díaz</td>
+            <td>1.75</td>
+            <td>2.05</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
+</body>
+</html>
