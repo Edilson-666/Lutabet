@@ -99,16 +99,35 @@
 
     .hero {
       height: 460px;
-      background:
-        linear-gradient(to bottom, rgba(0,0,0,.2), rgba(0,0,0,.9)),
-        url("https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?q=80&w=1800&auto=format&fit=crop");
-      background-size: cover;
-      background-position: center;
+      position: relative;
+      overflow: hidden;
       display: flex;
       align-items: flex-end;
       justify-content: center;
       text-align: center;
       padding-bottom: 70px;
+      background: #050505;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1.2s ease-in-out;
+    }
+
+    .hero-bg.active {
+      opacity: 1;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,.25), rgba(0,0,0,.92));
+      z-index: 1;
     }
 
     .hero h1 {
@@ -117,72 +136,12 @@
       font-weight: 900;
       text-transform: uppercase;
       text-shadow: 0 5px 20px black;
+      position: relative;
+      z-index: 2;
     }
 
     .hero h1 span {
       color: #ff2424;
-    }
-
-    .athlete-carousel {
-      width: 100%;
-      background: #080808;
-      border-top: 1px solid #1b1b1b;
-      border-bottom: 1px solid #1b1b1b;
-      overflow: hidden;
-      padding: 18px 0;
-    }
-
-    .carousel-track {
-      display: flex;
-      gap: 24px;
-      width: max-content;
-      animation: slideCarousel 28s linear infinite;
-    }
-
-    .carousel-track:hover {
-      animation-play-state: paused;
-    }
-
-    .carousel-athlete {
-      width: 150px;
-      min-width: 150px;
-      background: linear-gradient(135deg, #111, #080808);
-      border: 1px solid #252525;
-      border-radius: 16px;
-      padding: 14px;
-      text-align: center;
-      box-shadow: 0 0 18px rgba(0,0,0,.45);
-    }
-
-    .carousel-athlete img {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid #00e060;
-      margin-bottom: 10px;
-    }
-
-    .carousel-athlete p {
-      font-size: 17px;
-      font-weight: bold;
-      margin-bottom: 4px;
-    }
-
-    .carousel-athlete span {
-      color: #00e060;
-      font-size: 15px;
-      font-weight: bold;
-    }
-
-    @keyframes slideCarousel {
-      from {
-        transform: translateX(0);
-      }
-
-      to {
-        transform: translateX(-50%);
-      }
     }
 
     .content {
@@ -731,11 +690,9 @@
       <div class="mini-logo">LUTA<span>BET</span></div>
       <div class="mini-login">Login/Cadastro</div>
     </div><div class="hero">
+  <div class="hero-bg active"></div>
+  <div class="hero-bg"></div>
   <h1>Apostas<br><span>em Lutas</span></h1>
-</div>
-
-<div class="athlete-carousel">
-  <div class="carousel-track" id="carouselTrack"></div>
 </div>
 
 <div class="content">
@@ -997,25 +954,35 @@
     }
   ];
 
-  function renderCarousel() {
-    const track = document.getElementById("carouselTrack");
+  const heroImages = [
+    "https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?q=80&w=1800&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1555597408-26bc8e548a46?q=80&w=1800&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1600881333168-2ef49b341f30?q=80&w=1800&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1574680178050-55c6a6a96e0a?q=80&w=1800&auto=format&fit=crop"
+  ];
 
-    if (!track) {
+  let currentHeroImage = 0;
+
+  function startHeroSlideshow() {
+    const backgrounds = document.querySelectorAll(".hero-bg");
+
+    if (backgrounds.length < 2) {
       return;
     }
 
-    const duplicatedAthletes = [...athletes, ...athletes];
-    track.innerHTML = "";
+    backgrounds[0].style.backgroundImage = `url("${heroImages[0]}")`;
+    backgrounds[1].style.backgroundImage = `url("${heroImages[1]}")`;
 
-    duplicatedAthletes.forEach(athlete => {
-      track.innerHTML += `
-        <div class="carousel-athlete">
-          <img src="${athlete.photo}" alt="${athlete.name}">
-          <p>${athlete.name}</p>
-          <span>Odd ${athlete.odd.toFixed(2)}</span>
-        </div>
-      `;
-    });
+    setInterval(() => {
+      const activeBg = document.querySelector(".hero-bg.active");
+      const nextBg = [...backgrounds].find(bg => !bg.classList.contains("active"));
+
+      currentHeroImage = (currentHeroImage + 1) % heroImages.length;
+      nextBg.style.backgroundImage = `url("${heroImages[currentHeroImage]}")`;
+
+      activeBg.classList.remove("active");
+      nextBg.classList.add("active");
+    }, 3500);
   }
 
   function showScreen(id) {
@@ -1262,6 +1229,6 @@
       "<b>Sua aposta:</b><br>" + podiumText;
   }
 
-  renderCarousel();
+  startHeroSlideshow();
 </script></body>
 </html>
