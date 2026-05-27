@@ -51,7 +51,7 @@
     .screen {
       display: none;
       min-height: calc(100vh - 80px);
-      padding: 40px;
+      padding: 0;
     }
 
     .screen.active {
@@ -60,13 +60,13 @@
 
     .container {
       width: 100%;
-      max-width: 1200px;
-      margin: auto;
-      border: 1px solid #242424;
-      border-radius: 18px;
+      min-height: calc(100vh - 80px);
+      margin: 0;
+      border: none;
+      border-radius: 0;
       background: #050505;
       overflow: hidden;
-      box-shadow: 0 0 40px rgba(0,0,0,.8);
+      box-shadow: none;
     }
 
     .topbar {
@@ -145,7 +145,10 @@
     }
 
     .content {
-      padding: 45px;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 55px 45px;
     }
 
     h2 {
@@ -605,11 +608,11 @@
       }
 
       .screen {
-        padding: 14px;
+        padding: 0;
       }
 
       .content {
-        padding: 25px 18px;
+        padding: 30px 18px;
       }
 
       .hero {
